@@ -9,9 +9,13 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.6.*",
         "laravel/passport": "^6.0",
+<<<<<<< HEAD
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
         "unisharp/laravel-ckeditor": "^4.7"
+=======
+        "laravel/tinker": "^1.0"
+>>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
     },
     "require-dev": {
         "filp/whoops": "^2.0",

@@ -30,8 +30,11 @@ class User extends Authenticatable
     {
       return $this->belongsToMany('App\Group');
     }
+<<<<<<< HEAD
 
     public function protocols(){
         return $this->hasMany('App\Protocol');
     }
+=======
+>>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
 }

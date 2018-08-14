@@ -10,6 +10,12 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+<<<<<<< HEAD
+=======
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+
+>>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
@@ -69,6 +75,7 @@
         </nav>
 
         <main class="py-4">
+<<<<<<< HEAD
             @include('inc.messages')                    <!-- Bestätigungsrückmeldung von Aktionen: Löschen, Erstellen und Bearbeiten -->
             @yield('content')
         </main>
@@ -94,5 +101,10 @@
       }
     </script>
 
+=======
+            @yield('content')
+        </main>
+    </div>
+>>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
 </body>
 </html>

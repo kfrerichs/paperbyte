@@ -146,8 +146,11 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
+<<<<<<< HEAD
         Collective\Html\HtmlServiceProvider::class,                             // Laravel Forms & Html 
         Unisharp\Ckeditor\ServiceProvider::class,                               // CK Editor
+=======
+>>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
 
         /*
          * Package Service Providers...
@@ -210,8 +213,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+<<<<<<< HEAD
         'Form' => Collective\Html\FormFacade::class,                        // Laravel Forms & HTML
         'Html' => Collective\Html\HtmlFacade::class,                        // Laravel Forms & HTML
+=======
+>>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
 
     ],
 
