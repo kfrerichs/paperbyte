@@ -30,6 +30,8 @@ Route::post('/home/places/edit', 'HomeController@postPlacesEdit'); //Ort Übersi
 
 Route::get('/character', 'CharacterController@getOverview'); //Charakterübersicht
 Route::post('/character', 'CharacterController@postOverview'); //Charakterübersicht
+Route::get('/character/new', 'CharacterController@getNew'); //Charakter Neu
+Route::post('/character/new', 'CharacterController@postNew'); //Charakter Neu
 Route::get('/character/abilities', 'CharacterController@getAbilities'); //Fertigkeiten Übersicht (Bearbeiten von Meister an und Abstellbar)
 Route::post('/character/abilities', 'CharacterController@postAbilities'); //Fertigkeiten Übersicht (Bearbeiten von Meister an und Abstellbar)
 Route::get('/character/inventory', 'CharacterController@getInventory'); //Inventar

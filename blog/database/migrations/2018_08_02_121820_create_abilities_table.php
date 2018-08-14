@@ -16,14 +16,15 @@ class CreateAbilitiesTable extends Migration
         Schema::create('abilities', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('engl');
             $table->string('attr_1');
             $table->string('attr_2');
-            $table->string('shieldmaiden');
-            $table->string('warrior');
-            $table->string('healer');
-            $table->string('druid');
-            $table->string('sailor');
-            $table->string('craftsman');
+            $table->integer('shieldmaiden');
+            $table->integer('warrior');
+            $table->integer('healer');
+            $table->integer('druid');
+            $table->integer('sailor');
+            $table->integer('craftsman');
             $table->timestamps();
         });
     }
