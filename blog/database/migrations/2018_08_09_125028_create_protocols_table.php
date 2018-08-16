@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProtocolPostsTable extends Migration
+class CreateProtocolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateProtocolPostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('protocolPosts', function (Blueprint $table) {
+        Schema::create('protocols', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->string('title');
             $table->mediumText('body');
             $table->timestamps();
@@ -28,6 +29,6 @@ class CreateProtocolPostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('protocolPosts');
+        Schema::dropIfExists('protocols');
     }
 }
