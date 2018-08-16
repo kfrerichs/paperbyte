@@ -20,6 +20,8 @@ class CreateInventoriesTable extends Migration
             $table->string('item_name');
             $table->string('description');
             $table->integer('modulo');
+            $table->integer('ability_id')->unsigned();
+            $table->foreign('ability_id')->references('id')->on('abilities')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -33,6 +35,7 @@ class CreateInventoriesTable extends Migration
     {
         Schema::table('inventories',function(Blueprint $table){
             $table->dropForeign(['character_id']);
+            $table->dropForeign(['ability_id']);
         });
         Schema::dropIfExists('inventories');
     }
