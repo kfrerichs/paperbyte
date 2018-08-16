@@ -15,7 +15,7 @@
         {{Form::hidden('_method','PUT')}}
         {{Form::submit('Speichern', ['class'=>'btn btn-primary'])}}
     {!! Form::close() !!}
-
+    
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -23,7 +23,6 @@
 <script>
     CKEDITOR.replace( 'message-area')
 </script>
-
 
 <script>                                        // Löschen bestätigen
     function ConfirmDelete()

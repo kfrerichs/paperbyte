@@ -24,7 +24,6 @@
     CKEDITOR.replace( 'message-area')
 </script>
 
-
 <script>                                        // Löschen bestätigen
     function ConfirmDelete()
     {
