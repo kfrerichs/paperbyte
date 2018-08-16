@@ -36,6 +36,7 @@ Route::get('/character/abilities', 'CharacterController@getAbilities'); //Fertig
 Route::post('/character/abilities', 'CharacterController@postAbilities'); //Fertigkeiten Übersicht (Bearbeiten von Meister an und Abstellbar)
 Route::get('/character/inventory', 'CharacterController@getInventory'); //Inventar
 Route::post('/character/inventory', 'CharacterController@postInventory'); //Inventar
+Route::post('/character/inventory/delete/{id?}', 'CharacterController@getDelete'); //Inventar
 
 Route::get('/group', 'GroupController@getOverview'); //Gruppenübersicht
 Route::get('/group/detail', 'GroupController@getDetail'); //Gruppenmitglied Detailansicht

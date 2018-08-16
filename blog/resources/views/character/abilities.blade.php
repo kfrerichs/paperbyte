@@ -24,6 +24,7 @@
         <th>Kosten</th>
         <th>Grundwert</th>
         <th>Bonus</th>
+        <th>Gesamt</th>
       </tr>
       @foreach($abilities as $ability)
       <tr>
@@ -61,6 +62,7 @@
             @endphp
           <ul>
         </td>
+        <td>{{$character->$bonus1 + $character->$bonus2 + $character->$abilityname}}</td>
       </tr>
            @endforeach
       <tr>

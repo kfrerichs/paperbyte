@@ -72,7 +72,7 @@
             <label for="job">Beruf</label>
             <select name="job_id">
               @foreach($jobs as $job)
-                <option value="{{$job->id}}">{{$job->name}}</option>
+                <option value="{{$job->id}}" <?php if($job->id == $character->job_id) echo ' selected="selected"';?>>{{$job->name}}</option>
               @endforeach
             </select>
           </div>
@@ -126,7 +126,7 @@
           </td>
         </tr>
         <tr>
-          <td>Lorem Ipsum(Lo)</td>
+          <td>Logik(Lo)</td>
           <td>
             <input type="text" name="lo_rank" id="lo_rank" value="{{old('lo_rank')?old('lo_rank'):$character->lo_rank}}">
           </td>
@@ -135,7 +135,7 @@
           </td>
         </tr>
         <tr>
-          <td>Lorem Ipsum(In)</td>
+          <td>Intuition(In)</td>
           <td>
             <input type="text" name="in_rank" id="in_rank" value="{{old('in_rank')?old('in_rank'):$character->in_rank}}" >
           </td>
@@ -144,48 +144,48 @@
           </td>
         </tr>
         <tr>
-          <td>Lorem Ipsum(Li)</td>
+          <td>Stärke(St)</td>
           <td>
-            <input type="text" name="li_rank" id="li_rank" value="0" disabled>
+            <input type="text" name="st_rank" id="st_rank" value="{{old('st_rank')?old('st_rank'):$character->st_rank}}">
           </td>
           <td>
-            <input type="text" name="li" id="li" value="0" disabled>
-          </td>
-        </tr>
-        <tr>
-          <td>Lorem Ipsum(Li)</td>
-          <td>
-            <input type="text" name="li_rank" id="li_rank" value="0" disabled>
-          </td>
-          <td>
-            <input type="text" name="li" id="li" value="0" disabled>
+            <input type="text" name="st" id="st" value="{{old('st')?old('st'):$character->st}}">
           </td>
         </tr>
         <tr>
-          <td>Lorem Ipsum(Li)</td>
+          <td>Reaktion(Re)</td>
           <td>
-            <input type="text" name="li_rank" id="li_rank" value="0" disabled>
+            <input type="text" name="re_rank" id="re_rank" value="{{old('re_rank')?old('re_rank'):$character->re_rank}}">
           </td>
           <td>
-            <input type="text" name="li" id="li" value="0" disabled>
-          </td>
-        </tr>
-        <tr>
-          <td>Lorem Ipsum(Li)</td>
-          <td>
-            <input type="text" name="li_rank" id="li_rank" value="0" disabled>
-          </td>
-          <td>
-            <input type="text" name="li" id="li" value="0" disabled>
+            <input type="text" name="re" id="re" value="{{old('re')?old('re'):$character->re}}">
           </td>
         </tr>
         <tr>
-          <td>Lorem Ipsum(Li)</td>
+          <td>Geschicklichkeit(Ge)</td>
           <td>
-            <input type="text" name="li_rank" id="li_rank" value="0" disabled>
+            <input type="text" name="ge_rank" id="ge_rank" value="{{old('ge_rank')?old('ge_rank'):$character->ge_rank}}">
           </td>
           <td>
-            <input type="text" name="li" id="li" value="0" disabled>
+            <input type="text" name="ge" id="ge" value="{{old('ge')?old('ge'):$character->ge}}">
+          </td>
+        </tr>
+        <tr>
+          <td>Selbstdisziplin(Sd)</td>
+          <td>
+            <input type="text" name="sd_rank" id="sd_rank" value="{{old('sd_rank')?old('sd_rank'):$character->sd_rank}}">
+          </td>
+          <td>
+            <input type="text" name="sd" id="sd" value="{{old('sd')?old('sd'):$character->sd}}">
+          </td>
+        </tr>
+        <tr>
+          <td>Charisma(Ch)</td>
+          <td>
+            <input type="text" name="ch_rank" id="ch_rank" value="{{old('ch_rank')?old('ch_rank'):$character->ch_rank}}">
+          </td>
+          <td>
+            <input type="text" name="ch" id="ch" value="{{old('ch')?old('ch'):$character->ch}}">
           </td>
         </tr>
       </table>
@@ -197,7 +197,7 @@
       <label for="weapon_1">Waffe 1</label>
       <select name="weapon_1_id">
         @foreach($weapons as $weapon)
-          <option value="{{$weapon->id}}">{{$weapon->name}}</option>
+          <option value="{{$weapon->id}}" <?php if($weapon->id == $character->weapon_1_id) echo ' selected="selected"';?>>{{$weapon->name}}</option>
         @endforeach
       </select>
     </div>
@@ -205,7 +205,7 @@
       <label for="weapon_2">Waffe 2</label>
       <select name="weapon_2_id">
         @foreach($weapons as $weapon)
-          <option value="{{$weapon->id}}">{{$weapon->name}}</option>
+          <option value="{{$weapon->id}}" <?php if($weapon->id == $character->weapon_2_id) echo ' selected="selected"';?>>{{$weapon->name}}</option>
         @endforeach
       </select>
     </div>
@@ -213,7 +213,7 @@
       <label for="armour">Rüstungsklasse</label>
       <select name="armour_id">
         @foreach($armours as $armour)
-          <option value="{{$armour->id}}">{{$armour->id}} {{$armour->name}}</option>
+          <option value="{{$armour->id}}" <?php if($armour->id == $character->armour_id) echo ' selected="selected"';?>>{{$armour->id}} {{$armour->name}}</option>
         @endforeach
       </select>
     </div>
