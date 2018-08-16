@@ -15,7 +15,12 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::get('/creategroup', 'HomeController@getCreateGroup'); //Gruppe erstellen Seite
+// Auth::user()->authorizeRoles([‘manager’])
+
+Route::get('/creategroup', 'HomeController@getCreateGroup'); //Gruppe erstellen Seite 
+Route::get('/joingroup', 'HomeController@getJoinGroup'); //Gruppe erstellen Seit
+Route::post('/creategroup/join', 'HomeController@postCreateGroupJoin');
+Route::post('/creategroup/new', 'HomeController@postCreateGroupNew');
 
 Route::get('/home', 'HomeController@getProtocol'); //Protokollseite
 Route::post('/home', 'HomeController@postProtocol'); //Protokollseite

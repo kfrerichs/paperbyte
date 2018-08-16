@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Armour extends Model
+class Place extends Model
 {
   public function npc()
   {

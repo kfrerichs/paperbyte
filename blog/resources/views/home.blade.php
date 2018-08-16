@@ -15,6 +15,15 @@
                     @endif
 
                     You are logged in!
+                    Group: {{$cookieGroup}}
+                    Character: {{$cookieCharacter}}
+
+                    @if(Auth::user()->hasRole('master'))
+                        <p>You'r a Master!</p>
+                    @endif
+                    @if(Auth::user()->hasRole('player'))
+                        <p>You'r a player...</p>
+                    @endif
                 </div>
             </div>
         </div>
