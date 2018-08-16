@@ -91,3 +91,7 @@ function changeDice(){
     $('.dice.open').show()
   }
 }
+
+$(document).ready(function() {
+  $(".dropdown-toggle").dropdown();
+});
