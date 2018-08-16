@@ -15,4 +15,24 @@
         {{Form::hidden('_method','PUT')}}
         {{Form::submit('Speichern', ['class'=>'btn btn-primary'])}}
     {!! Form::close() !!}
+
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}" defer></script>
+
+<script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
+<script>
+    CKEDITOR.replace( 'message-area')
+</script>
+
+<script>                                        // Löschen bestätigen
+    function ConfirmDelete()
+    {
+    var confirmation = confirm("Soll dieser Eintrag wirklich gelöscht werden?");
+    if (confirmation)
+    return true;
+    else
+    return false;
+    }
+</script>
+
 @endsection
