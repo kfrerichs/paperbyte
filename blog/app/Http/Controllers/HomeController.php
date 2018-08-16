@@ -3,11 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-<<<<<<< HEAD
 use App\User;
 use App\Protocol;
-=======
->>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
+use App\Adventure;
 
 class HomeController extends Controller
 {
@@ -26,7 +24,6 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-<<<<<<< HEAD
     /*public function index()
     {
         return view('home');
@@ -35,15 +32,14 @@ class HomeController extends Controller
     public function getProtocol(){
         $protocols = Protocol::orderBy('created_at','asc')->paginate(10);
         return view('home.protocol.index')->with('protocols', $protocols);
+    }
 
+    public function getAdventure(){
+        $adventures = Adventure::orderBy('created_at','asc')->paginate(10);
+        return view('home.adventure.index')->with('adventures', $adventures);
 
         //$user_id = auth()->user()->id;
         //$user = User::find($user_id);
         //return view('home.protocol.index')->with('protocols', $protocols);//->with('protocols', $user->protocols);
-=======
-    public function index()
-    {
-        return view('home');
->>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
     }
 }

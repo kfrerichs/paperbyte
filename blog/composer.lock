@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
     "content-hash": "460e8640d755ef562b7631dc75633bb1",
-=======
-    "content-hash": "a85796bac58083fb80eba34a8c9fcd15",
->>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
     "packages": [
         {
             "name": "defuse/php-encryption",
@@ -1019,7 +1015,6 @@
             "time": "2018-05-17T13:42:07+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "laravelcollective/html",
             "version": "v5.6.10",
             "source": {
@@ -1088,8 +1083,6 @@
             "time": "2018-06-18T15:04:16+00:00"
         },
         {
-=======
->>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
             "name": "lcobucci/jwt",
             "version": "3.2.3",
             "source": {
@@ -3054,7 +3047,6 @@
             "time": "2017-11-27T11:13:29+00:00"
         },
         {
-<<<<<<< HEAD
             "name": "unisharp/laravel-ckeditor",
             "version": "4.7.2",
             "source": {
@@ -3109,8 +3101,6 @@
             "time": "2017-11-01T04:33:40+00:00"
         },
         {
-=======
->>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
             "name": "vlucas/phpdotenv",
             "version": "v2.5.1",
             "source": {

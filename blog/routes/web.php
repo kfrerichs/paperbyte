@@ -17,19 +17,17 @@ Route::get('/', function () {
 
 Route::get('/creategroup', 'HomeController@getCreateGroup'); //Gruppe erstellen Seite
 
-<<<<<<< HEAD
 Route::get('/home/', 'HomeController@getProtocol'); //Protokollseite
 Route::post('/home/', 'HomeController@postProtocol'); //Protokollseite
 
 Route::resource('protocol', 'ProtocolController');
-//Route::get('/home/protocolCreate', 'ProtocolPostController@getProtocolCreate'); //Neuen Text hinzufügen
-//Route::post('/home/protocolCreate', 'ProtocolPostController@postProtocolCreate'); //Neuen Text hinzufügen
-=======
-Route::get('/home', 'HomeController@getProtocol'); //Protokollseite
-Route::post('/home', 'HomeController@postProtocol'); //Protokollseite
->>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
+
 Route::get('/home/adventure', 'HomeController@getAdventure'); //Abenteuerseite (nur für Meister sichtbar)
 Route::post('/home/adventure', 'HomeController@postAdventure'); //Abenteuerseite (nur für Meister sichtbar)
+
+Route::resource('adventure', 'AdventureController');
+
+
 Route::get('/home/npcs', 'HomeController@getNpc'); //NPC Übersicht (nur von Meister bearbeitbar)
 Route::get('/home/npcs/edit', 'HomeController@getNpcEdit'); //NPC bearbeiten (nur für Meister sichtbar)
 Route::post('/home/npcs/edit', 'HomeController@postNpcEdit'); //NPC bearbeiten (nur für Meister sichtbar)
@@ -44,10 +42,7 @@ Route::post('/character/abilities', 'CharacterController@postAbilities'); //Fert
 Route::get('/character/inventory', 'CharacterController@getInventory'); //Inventar
 Route::post('/character/inventory', 'CharacterController@postInventory'); //Inventar
 
-<<<<<<< HEAD
 /*
-=======
->>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
 Route::get('/group', 'GroupController@getOverview'); //Gruppenübersicht
 Route::get('/group/detail', 'GroupController@getDetail'); //Gruppenmitglied Detailansicht
 
@@ -68,11 +63,7 @@ Route::get('/rules/potions', 'RulesController@getIndex'); //Tränke Seite
 Route::get('/rules/character_file', 'RulesController@getIndex'); //Charakterbogen Seite
 Route::get('/rules/fail_table', 'RulesController@getIndex'); //Patzertabelle Seite
 
-<<<<<<< HEAD
 */
-=======
-
->>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15
 
 
 
@@ -83,8 +74,4 @@ Route::get('/rules/fail_table', 'RulesController@getIndex'); //Patzertabelle Sei
 
 Auth::routes();
 
-<<<<<<< HEAD
 //Route::get('/home', 'HomeController@index')->name('home');
-=======
-Route::get('/home', 'HomeController@index')->name('home');
->>>>>>> 7959e1fa7f1869a475e4a55a6dbaef2112cedf15

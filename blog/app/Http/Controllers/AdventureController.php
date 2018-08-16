@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use App\Protocol;
+use App\Adventure;
 
-class ProtocolController extends Controller
+class AdventureController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,8 +24,8 @@ class ProtocolController extends Controller
      */
     public function index()
     {
-        $protocols = Protocol::orderBy('created_at','asc') ->paginate(10);        //Paginate sinnvoll? -> Seite soll ja immer zum aktuellen scrollen aber lädt schneller
-        return view('home.protocol.index')->with('protocols', $protocols);   
+        $adventures = Adventure::orderBy('created_at','asc') ->paginate(10);        //Paginate sinnvoll? -> Seite soll ja immer zum aktuellen scrollen aber lädt schneller
+        return view('home.adventure.index')->with('adventures', $adventures);   
     }
 
     /**
@@ -51,15 +51,15 @@ class ProtocolController extends Controller
             'body' => 'required',
         ]);
 
-        // Create new Protocol-Post
-        $protocol = new Protocol;
-        $protocol->title = $request->input('title');                //liest den eingegebenen Titel aus
-        $protocol->body = $request->input('body');                //liest den eingegebenen Inhalt aus
-        $protocol->user_id = auth()->user()->id;
+        // Create new Adventure-Post
+        $adventure = new Adventure;
+        $adventure->title = $request->input('title');                //liest den eingegebenen Titel aus
+        $adventure->body = $request->input('body');                //liest den eingegebenen Inhalt aus
+        $adventure->user_id = auth()->user()->id;
 
-        $protocol->save();
+        $adventure->save();
 
-        return redirect('/home')->with('success', 'Eintrag erstellt');
+        return redirect('/adventure')->with('success', 'Eintrag erstellt');
     }
 
     /**
@@ -70,8 +70,8 @@ class ProtocolController extends Controller
      */
     public function show($id)
     {
-        $protocol = Protocol::find($id);
-        return view('home.protocol.show')->with('protocol', $protocol);
+        $adventure = Adventure::find($id);
+        return view('home.adventure.show')->with('adventure', $adventure);
     }
 
     /**
@@ -82,12 +82,12 @@ class ProtocolController extends Controller
      */
     public function edit($id)
     {
-        $protocol = Protocol::find($id);
+        $adventure = Adventure::find($id);
         // Check for correct user
         /*if(auth()->user()->id !==$protocol->user_id){
             return redirect('/protocol');
         }*/
-        return view('home.protocol.edit')->with('protocol', $protocol);
+        return view('home.adventure.edit')->with('adventure', $adventure);
     }
 
     /**
@@ -105,12 +105,12 @@ class ProtocolController extends Controller
         ]);
 
         // Create new Post
-        $protocol = Protocol::find($id);
-        $protocol->title = $request->input('title');
-        $protocol->body = $request->input('body');
+        $adventure = Adventure::find($id);
+        $adventure->title = $request->input('title');
+        $adventure->body = $request->input('body');
     
-        $protocol->save();
-        return redirect('/home')->with('success', 'Eintrag geändert');
+        $adventure->save();
+        return redirect('/adventure')->with('success', 'Eintrag geändert');
     }
 
     /**
@@ -121,9 +121,9 @@ class ProtocolController extends Controller
      */
     public function destroy($id)
     {
-        $protocol = Protocol::find($id);
-        $protocol->delete();
+        $adventure = Adventure::find($id);
+        $adventure->delete();
 
-        return redirect('/home')->with('success', 'Eintrag gelöscht');
+        return redirect('/adventure')->with('success', 'Eintrag gelöscht');
     }
 }
