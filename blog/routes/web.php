@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 // Auth::user()->authorizeRoles([‘manager’])
+// Route::group(['middleware' => ['auth', 'role:admin|user']], function () {
 
 Route::get('/creategroup', 'HomeController@getCreateGroup'); //Gruppe erstellen Seite 
 Route::get('/joingroup', 'HomeController@getJoinGroup'); //Gruppe erstellen Seit
