@@ -50,7 +50,6 @@ Route::get('/character/inventory', 'CharacterController@getInventory'); //Invent
 Route::post('/character/inventory', 'CharacterController@postInventory'); //Inventar
 Route::post('/character/inventory/delete/{id?}', 'CharacterController@getDelete'); //Inventar
 
-/*
 Route::get('/group', 'GroupController@getOverview'); //Gruppenübersicht
 Route::get('/group/detail', 'GroupController@getDetail'); //Gruppenmitglied Detailansicht
 
@@ -70,10 +69,6 @@ Route::get('/rules/runes', 'RulesController@getIndex'); //Runen Seite
 Route::get('/rules/potions', 'RulesController@getIndex'); //Tränke Seite
 Route::get('/rules/character_file', 'RulesController@getIndex'); //Charakterbogen Seite
 Route::get('/rules/fail_table', 'RulesController@getIndex'); //Patzertabelle Seite
-
-*/
-
-
 
 
 //pages visible for all
