@@ -22,8 +22,8 @@ Route::get('/joingroup', 'HomeController@getJoinGroup'); //Gruppe erstellen Seit
 Route::post('/creategroup/join', 'HomeController@postCreateGroupJoin');
 Route::post('/creategroup/new', 'HomeController@postCreateGroupNew');
 
-Route::get('/home/', 'HomeController@getProtocol'); //Protokollseite
-Route::post('/home/', 'HomeController@postProtocol'); //Protokollseite
+Route::get('/home', 'HomeController@getProtocol'); //Protokollseite
+Route::post('/home', 'HomeController@postProtocol'); //Protokollseite
 
 Route::resource('protocol', 'ProtocolController');
 
@@ -69,7 +69,6 @@ Route::get('/rules/runes', 'RulesController@getIndex'); //Runen Seite
 Route::get('/rules/potions', 'RulesController@getIndex'); //Tränke Seite
 Route::get('/rules/character_file', 'RulesController@getIndex'); //Charakterbogen Seite
 Route::get('/rules/fail_table', 'RulesController@getIndex'); //Patzertabelle Seite
-
 
 //pages visible for all
 //pages visible for players
