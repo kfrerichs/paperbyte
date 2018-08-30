@@ -10,19 +10,19 @@ use App\Models\Ability;
 use App\Models\Inventory;
 use Request;
 use Validator;
+use Auth;
 
 class CharacterController extends Controller
 {
   public function getOverview(){
-    $character = Character::where('user', 'Klara')->first();
+    $character = Character::where('user', Auth::user()->name)->first();
     $jobs = Job::orderBy('name','asc')->get();
     $weapons = Weapon::orderBy('name','asc')->get();
     $armours = Armour::orderBy('name','asc')->get();
-    $test= "alalalaala";
-    return view('character.character_overview')->with('character', $character)->with('test',$test)->with('jobs', $jobs)->with('armours', $armours)->with('weapons', $weapons);
+    return view('character.character_overview')->with('character', $character)->with('jobs', $jobs)->with('armours', $armours)->with('weapons', $weapons);
   }
   public function postOverview(){
-    $character = Character::where('user', 'Klara')->first();
+    $character = Character::where('user', Auth::user()->name)->first();
     // $validator = Validator::make(Request::all(),array('name' => 'required|min:2'));
     
     //   if ($validator->fails()){
@@ -63,17 +63,61 @@ class CharacterController extends Controller
     return redirect('character');
     
   }
+  public function getName(){
+    return view('character.character_name');
+  }
+  public function postName(){
+    $character = new Character;
+    $character->user = Auth::user()->name;
+    $character->name = Request::input('name');
+    $character->save();
+    return redirect('character/new');
+  }
   public function getNew($name=''){
-    //wenn keine Character-Zeile den Namen des Users hat und(!) der aktuellen Gruppe zugeordnet ist dann zeige seite /new
-    
-    //prüfe value von Text-input (name des Charakters) und ob es diesen schon in der CharakterDB gibt
-    //wenn ja: ERROR: Name schon vergeben
-    //wenn nein: erstelle neuen Charakter mit dem Namen, User und Gruppe. Leite an /character weiter
+    $character = Character::where('user', Auth::user()->name)->first();
+    $jobs = Job::orderBy('name','asc')->get();
+    $weapons = Weapon::orderBy('name','asc')->get();
+    $armours = Armour::orderBy('name','asc')->get();
+    return view('character.character_initialize')->with('character', $character)->with('jobs', $jobs)->with('armours', $armours)->with('weapons', $weapons);
+  }
+  public function postNew(){
+    $character = Character::where('user', Auth::user()->name)->first();
+    $character->gender= Request::input('gender');
+    $character->job_id= Request::input('job_id');
+    $character->age= Request::input('age');
+    $character->hair= Request::input('hair');
+    $character->eyes= Request::input('eyes');
+    $character->size= Request::input('size');
+    $character->weight= Request::input('weight');
+    $character->family= Request::input('family');
+    $character->looks= Request::input('looks');
+    $character->background= Request::input('background');
+    $character->weapon_1_id= Request::input('weapon_1_id');
+    $character->weapon_2_id= Request::input('weapon_2_id');
+    $character->armour_id= Request::input('armour_id');
+    $character->li_rank= Request::input('li_rank');
+    $character->li= Request::input('li');
+    $character->st_rank= Request::input('st_rank');
+    $character->st= Request::input('st');
+    $character->in_rank= Request::input('in_rank');
+    $character->in= Request::input('in');
+    $character->re_rank= Request::input('re_rank');
+    $character->re= Request::input('re');
+    $character->ge_rank= Request::input('ge_rank');
+    $character->ge= Request::input('ge');
+    $character->lo_rank= Request::input('lo_rank');
+    $character->lo= Request::input('lo');
+    $character->sd_rank= Request::input('sd_rank');
+    $character->sd= Request::input('sd');
+    $character->ch_rank= Request::input('ch_rank');
+    $character->ch= Request::input('ch');
+    $character->save();
+    return redirect('/protocol');
   }
   
   public function getAbilities(){
     $abilities = Ability::orderBy('name','asc')->get();
-    $character = Character::where('user', 'Klara')->first();
+    $character = Character::where('user', Auth::user()->name)->first();
     $findJob = Job::where('id',$character->job_id)->first();
     // $findAbility = ::where('engl',)
     // $character->job_id
@@ -82,7 +126,7 @@ class CharacterController extends Controller
   }
   public function postAbilities(){
     $abilities = Ability::orderBy('name','asc')->get();
-    $character = Character::where('user', 'Klara')->first();
+    $character = Character::where('user', Auth::user()->name)->first();
     //$character->li_rank= Request::input('li_rank');
     foreach($abilities as $ability){
       $abilityname = $ability->engl;
@@ -92,13 +136,13 @@ class CharacterController extends Controller
     return redirect('character/abilities');
   }
   public function getInventory(){
-    $character = Character::where('user', 'Klara')->first();
+    $character = Character::where('user', Auth::user()->name)->first();
     $inventories = Inventory::where('character_id', $character->id)->get();
     $abilities = Ability::orderBy('name','asc')->get();
     return view('character.inventory')->with('character', $character)->with('inventories',$inventories)->with('abilities',$abilities);
   }
   public function postInventory(){
-    $character = Character::where('user', 'Klara')->first();
+    $character = Character::where('user', Auth::user()->name)->first();
     $inventory = new Inventory();
     $inventory->character_id= $character->id;
     $inventory->item_name= Request::input('item_name');

@@ -107,7 +107,7 @@
     <label for="looks">Aussehen</label>
     <textarea name="looks" id="looks">{{$character->looks}}</textarea>
     <label for="background">Persönlichkeit</label>
-    <textarea name="background" id="background">{{$character->background}}</textarea> 
+    <textarea name="background" id="background" >{{$character->background}}</textarea> 
   </div>
   <div class="attributes">
       <table>
