@@ -116,7 +116,7 @@ class HomeController extends Controller
 
                 Cookie::queue('group', $groupName, 43200);
 
-                return redirect('home');
+                return redirect('character/name');
                 // return view('character');
             }
         }

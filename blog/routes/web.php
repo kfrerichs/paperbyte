@@ -45,7 +45,7 @@ Route::get('/character', 'CharacterController@getOverview'); //Charakterübersic
 Route::post('/character', 'CharacterController@postOverview'); //Charakterübersicht
 Route::get('/character/name', 'CharacterController@getName'); //Charakter Name
 Route::post('/character/name', 'CharacterController@postName'); //Charakter Name
-Route::get('/character/new', 'CharacterController@getNew'); //Charakter Neu
+Route::get('/character/new', 'CharacterController@getNew')->middleware(); //Charakter Neu
 Route::post('/character/new', 'CharacterController@postNew'); //Charakter Neu
 Route::get('/character/abilities', 'CharacterController@getAbilities'); //Fertigkeiten Übersicht (Bearbeiten von Meister an und Abstellbar)
 Route::post('/character/abilities', 'CharacterController@postAbilities'); //Fertigkeiten Übersicht (Bearbeiten von Meister an und Abstellbar)

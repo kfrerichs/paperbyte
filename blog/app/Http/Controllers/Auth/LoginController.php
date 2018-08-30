@@ -30,22 +30,14 @@ class LoginController extends Controller
      */
     protected function redirectTo()
     {
-        //doofe stelle -.-
-
-        /*if(Cookie::get('group') != null && Cookie::get('character') == null)
-        {
-            $groupEntry = Group::where('name','LIKE', '%'.Cookie::get('group').'%')->get();
-            Cookie::queue('character', $groupEntry[0]->character, 43200);
+        $group = Group::where('username',Auth::user()->name);
+        if($group->charactername= ''){
+            return 'character/name';
         }
-        else if (Cookie::get('group') == null)
-        {
-            $groupEntry = Group::where('username','LIKE', '%'.Auth::user()->name.'%')->get();
-
-            Cookie::queue('group', $groupEntry[0]->name, 43200);
-            Cookie::queue('character', $groupEntry[0]->charactername, 43200);
-        }*/
-
-        return '/home';
+        else{
+            return '/protocol';
+        }
+        
     }
 
     /**

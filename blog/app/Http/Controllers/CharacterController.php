@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
+use App\Models\Group;
 use App\Models\Job;
 use App\Models\Armour;
 use App\Models\Weapon;
@@ -71,6 +72,9 @@ class CharacterController extends Controller
     $character->user = Auth::user()->name;
     $character->name = Request::input('name');
     $character->save();
+    $group = Group::where('username', Auth::user()->name)->where('charactername','=', '')->first();
+    $group->charactername = Request::input('name');
+    $group->save();
     return redirect('character/new');
   }
   public function getNew($name=''){
