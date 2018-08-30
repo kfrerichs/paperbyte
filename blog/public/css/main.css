@@ -1,0 +1,22 @@
+.menuIcon{
+    height: 100px;
+}
+
+.navDropdown{
+    color: #4d3328;
+    list-style: none;
+    margin: 0px 30px 10px 0px;
+}
+
+.nav-item{
+    margin-right: 30px;
+}
+
+.subNavLi{
+    display: inline;
+    margin-right: 30px;
+}
+
+.subNavUl{
+    list-style: none;
+}

@@ -103,6 +103,10 @@ class HomeController extends Controller
             }
             else
             {
+                $role_player = Role::where('name', 'player')->first();
+                $user = User::where('name','LIKE','%'.Auth::user()->name.'%')->first();
+                $user->roles()->attach($role_player);
+
                 $group = new Group();
                 $group->name = $groupName;
                 $group->username =  Auth::user()->name;

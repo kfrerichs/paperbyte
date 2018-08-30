@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.loginRegisterGroup')
 
 @section('content')
     <div class="container">

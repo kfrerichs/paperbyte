@@ -32,7 +32,7 @@ class LoginController extends Controller
     {
         //doofe stelle -.-
 
-        if(Cookie::get('group') != null && Cookie::get('group') == null)
+        /*if(Cookie::get('group') != null && Cookie::get('character') == null)
         {
             $groupEntry = Group::where('name','LIKE', '%'.Cookie::get('group').'%')->get();
             Cookie::queue('character', $groupEntry[0]->character, 43200);
@@ -43,7 +43,7 @@ class LoginController extends Controller
 
             Cookie::queue('group', $groupEntry[0]->name, 43200);
             Cookie::queue('character', $groupEntry[0]->charactername, 43200);
-        }
+        }*/
 
         return '/home';
     }

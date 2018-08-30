@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.loginRegisterGroup')
 
 @section('content')
     <!-- Bei Submit muss die existenz der Gruppe geprüft und bei dem Spieler eingetragen werden -->
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div>
-                Error: {{$errorMessageJoin}}
+               {{$errorMessageJoin}}
             </div>
         </form>
 

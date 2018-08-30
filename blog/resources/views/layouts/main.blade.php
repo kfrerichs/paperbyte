@@ -12,70 +12,69 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="css/main.css" />
     <title>Midgard</title>
 
   </head>
   <body>
+  @guest
+  @else
+
     <div class="container-fluid">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Midgard</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <nav class="navbar navbar-expand-lg">
         <ul class="navbar-nav mr-auto">
-
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ url('manufacturers/index') }}">Spielen</a>
+          <li class="nav-item">
+            <a href="{{ url('/home') }}"><img src="{{ asset('/img/Banner.png') }}" alt="Midgard" class="menuIcon"/></a>
           </li>
-
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ url('carmodels/index') }}">Charakter</a>
+          <li class="nav-item">
+            @if(Auth::user()->hasRole('master'))
+              <a href="{{ url('/play/master') }}"><img src="{{ asset('/img/IconDice.png') }}" alt="Midgard" class="menuIcon"/></a>
+            @elseif(Auth::user()->hasRole('player'))
+              <a href="{{ url('/play') }}"><img src="{{ asset('/img/IconDice.png') }}" alt="Midgard" class="menuIcon"/></a>
+            @endif
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ url('spareparts/index') }}">Gruppe</a>
+          @if(Auth::user()->hasRole('player'))
+          <li class="nav-item">
+            <a href="{{ url('/character') }}"><img src="{{ asset('/img/IconCharacter.png') }}" alt="Midgard" class="menuIcon"/></a>
           </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ url('users/index') }}">Regelwerk</a>
+          @endif
+          <li class="nav-item">
+            <a href="{{ url('/group') }}"><img src="{{ asset('/img/IconGroup.png') }}" alt="Midgard" class="menuIcon"/></a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/rules') }}"><img src="{{ asset('/img/IconRules.png') }}" alt="Midgard" class="menuIcon"/></a>
           </li>
         </ul>
+        <ul class="navbar-nav ml-auto" >
+          <li>
+            <a  href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              <img src="{{ asset('/img/IconLogout.png') }}" alt="Midgard" class="menuIcon"/>
+            </a>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+            </form>
+          </li>
+          <li class="nav-item dropdown">
+              <a id="navbarDropdown" style="color: #4d3328; font-size: 20pt; margin-top:50%;" class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <span class="caret"></span>
+              </a>
 
-              <!-- Right Side Of Navbar -->
-              <ul class="navbar-nav ml-auto">
-                  <!-- Authentication Links -->
-                  @guest
-                      <li class="nav-item">
-                          <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                      </li>
-                      <li class="nav-item">
-                          <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                      </li>
-                  @else
-                      <li class="nav-item dropdown">
-                          <a id="navbarDropdown" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                              {{ Auth::user()->name }} <span class="caret"></span>
-                          </a>
-
-                          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="{{ route('logout') }}"
-                                  onclick="event.preventDefault();
-                                                document.getElementById('logout-form').submit();">
-                                  {{ __('Logout') }}
-                              </a>
-
-                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                  @csrf
-                              </form>
-                          </div>
-                      </li>
-                  @endguest
-              </ul>
-          </div>
-      </div>
-
-
-    </nav>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <ul>
+                  <li class="navDropdown">
+                    <a href="{{ url('/profile/name') }}"> Profilname ändern</a>
+                  </li>
+                  <li class="navDropdown">
+                    <a href="{{ url('/profile/password') }}">Passwort ändern</a>
+                  </li>
+                  <ul>
+              </div>
+          </li>
+        </ul>
+      </nav>
     </div>
+    @endguest
+
     <div class="container">
     @include('inc.messages')
     @yield('content')

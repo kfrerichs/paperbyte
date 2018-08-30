@@ -28,8 +28,9 @@ Route::post('/home', 'HomeController@postProtocol'); //Protokollseite
 
 Route::resource('protocol', 'ProtocolController');
 
-Route::get('/home/adventure', 'HomeController@getAdventure'); //Abenteuerseite (nur für Meister sichtbar)
+/*Route::get('/home/adventure', 'HomeController@getAdventure'); //Abenteuerseite (nur für Meister sichtbar)
 Route::post('/home/adventure', 'HomeController@postAdventure'); //Abenteuerseite (nur für Meister sichtbar)
+Route::post('/home/adventure', 'HomeController@storeAdventure');*/
 
 Route::resource('adventure', 'AdventureController');
 
