@@ -34,7 +34,6 @@ Route::post('/home/adventure', 'HomeController@storeAdventure');*/
 
 Route::resource('adventure', 'AdventureController');
 
-
 Route::get('/home/npcs', 'HomeController@getNpc'); //NPC Übersicht (nur von Meister bearbeitbar)
 Route::get('/home/npcs/edit', 'HomeController@getNpcEdit'); //NPC bearbeiten (nur für Meister sichtbar)
 Route::post('/home/npcs/edit', 'HomeController@postNpcEdit'); //NPC bearbeiten (nur für Meister sichtbar)
@@ -44,6 +43,8 @@ Route::post('/home/places/edit', 'HomeController@postPlacesEdit'); //Ort Übersi
 
 Route::get('/character', 'CharacterController@getOverview'); //Charakterübersicht
 Route::post('/character', 'CharacterController@postOverview'); //Charakterübersicht
+Route::get('/character/name', 'CharacterController@getName'); //Charakter Name
+Route::post('/character/name', 'CharacterController@postName'); //Charakter Name
 Route::get('/character/new', 'CharacterController@getNew'); //Charakter Neu
 Route::post('/character/new', 'CharacterController@postNew'); //Charakter Neu
 Route::get('/character/abilities', 'CharacterController@getAbilities'); //Fertigkeiten Übersicht (Bearbeiten von Meister an und Abstellbar)
