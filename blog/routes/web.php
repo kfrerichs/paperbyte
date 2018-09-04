@@ -62,7 +62,7 @@ Route::get('/play/master', 'PlayController@getPlayMaster'); //Spielseite (nur f�
 Route::post('/play/master', 'PlayController@postPlayMaster'); //Spielseite (nur f체r Meister sichtbar)
 
 Route::get('/profile/password', 'ProfileController@getPass'); //Passwort 채ndern
-Route::post('/profile/password', 'ProfileController@postPass'); //Passwort 채ndern
+Route::post('/profile/password', 'ProfileController@postPass')->name('changePassword'); //Passwort 채ndern
 Route::get('/profile/name', 'ProfileController@getName'); //Name und Email 채ndern
 Route::post('/profile/name', 'ProfileController@postName'); //Name und Email 채ndern
 

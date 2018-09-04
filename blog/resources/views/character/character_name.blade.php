@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('loginRegisterGroup.main')
 
 @section('content')
 <form method="post" action="{{url('/character/name')}}" class="characterformular">

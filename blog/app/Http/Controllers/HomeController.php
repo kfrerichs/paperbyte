@@ -40,8 +40,8 @@ class HomeController extends Controller
         //     $request->user()->authorizeRoles(['employee', 'manager']);
         // @if(Auth::user()->hasRole(‘manager’)) 
 
-        $cookieGroup = request()->cookie('group');
-        $cookieCharacter = request()->cookie('character');
+       // $cookieGroup = request()->cookie('group');
+        // $cookieCharacter = request()->cookie('character');
         return view('home')->with('cookieGroup',$cookieGroup)->with('cookieCharacter', $cookieCharacter);
     }
 
