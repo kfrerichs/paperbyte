@@ -22,7 +22,10 @@ class Character extends Model
   {
       return $this->hasMany('App\Models\Inventory');
   }
-
+  public function group()
+  {
+      return $this->belongsTo('App\Models\Group');
+  }
 }
 
 ?>

@@ -12,8 +12,10 @@
                             <h4>{{$place->name}}</h4>
                             <tr>
                                 <td>
-                                    <img src="{{asset('images/$place->img_name')}}" width="20%">
-                                    <img src="../images/ivarstatt_pic.jpg" width="20%">
+                                    <!-- @php
+                                        $img = 'images/' . $place->img_name;
+                                    @endphp -->
+                                    <img src="{{ asset('images/' . $place->img_name) }}" width="20%">
                                 </td>
                             </tr>
                             <tr>
