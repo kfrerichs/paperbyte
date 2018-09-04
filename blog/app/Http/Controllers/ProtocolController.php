@@ -68,11 +68,11 @@ class ProtocolController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $protocol = Protocol::find($id);
-        return view('home.protocol.show')->with('protocol', $protocol);
-    }
+    // public function show($id)
+    // {
+    //     $protocol = Protocol::find($id);
+    //     return view('home.protocol.show')->with('protocol', $protocol);
+    // }
 
     /**
      * Show the form for editing the specified resource.

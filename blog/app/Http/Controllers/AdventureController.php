@@ -59,7 +59,7 @@ class AdventureController extends Controller
 
         $adventure->save();
 
-        return redirect('/adventure')->with('success', 'Eintrag erstellt');
+        return redirect('/home/adventure')->with('success', 'Eintrag erstellt');
     }
 
     /**
@@ -68,11 +68,11 @@ class AdventureController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        $adventure = Adventure::find($id);
-        return view('home.adventure.show')->with('adventure', $adventure);
-    }
+    // public function show($id)
+    // {
+    //     $adventure = Adventure::find($id);
+    //     return view('home.adventure.show')->with('adventure', $adventure);
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -110,7 +110,7 @@ class AdventureController extends Controller
         $adventure->body = $request->input('body');
     
         $adventure->save();
-        return redirect('/adventure')->with('success', 'Eintrag geändert');
+        return redirect('/home/adventure')->with('success', 'Eintrag geändert');
     }
 
     /**
@@ -124,6 +124,6 @@ class AdventureController extends Controller
         $adventure = Adventure::find($id);
         $adventure->delete();
 
-        return redirect('/adventure')->with('success', 'Eintrag gelöscht');
+        return redirect('/home/adventure')->with('success', 'Eintrag gelöscht');
     }
 }
