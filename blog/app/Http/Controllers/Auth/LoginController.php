@@ -35,7 +35,7 @@ class LoginController extends Controller
             return 'character/name';
         }
         else{
-            return '/protocol';
+            return '/home';
         }
         
     }

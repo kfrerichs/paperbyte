@@ -26,6 +26,7 @@
 }
 </style>
 <!-- <form method="post" action="{{url('/play')}}" class="playformular"> -->
+<!-- HP und MP plus modifikation | Runen Auswahl -->
   @csrf
   <p class="dice open">Offener Wurf:<span id="testDice">0</span></p></br>
   <p class="dice modified">Unmodifizierter Wurf:<span id="testDiceUnmodified">0</span></p></br>
