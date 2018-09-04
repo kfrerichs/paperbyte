@@ -12,7 +12,12 @@
                     @endphp
                     @foreach($allCharacters as $character)
                         @if($charactername == $character->name)
-                        <div>{{$character->name}}</div>
+                        <div>
+                        <span>{{$character->name}}</span>
+                        <span>{{$character->gender}}</span>
+                        <span>{{$character->hair}}</span>
+                        <span>{{$character->eyes}}</span>
+                        </div>
                         @endif
                     @endforeach
                 @endforeach
