@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Protocol;
 use App\Adventure;
 use Request;
@@ -14,6 +15,8 @@ use Validator;
 use Auth;
 use Cookie;
 use App\Role;
+use App\Models\Npc;
+use App\Models\Place;
 
 class HomeController extends Controller
 {
@@ -45,20 +48,20 @@ class HomeController extends Controller
         return view('home')->with('cookieGroup',$cookieGroup)->with('cookieCharacter', $cookieCharacter);
     }
 
-    public function getProtocol(){
-        $protocols = Protocol::orderBy('created_at','asc')->paginate(10);
-        return view('home.protocol.index')->with('protocols', $protocols);
-    }
+    // public function getProtocol(){
+    //     $protocols = Protocol::orderBy('created_at','asc')->paginate(10);
+    //     return view('home.protocol.index')->with('protocols', $protocols);
+    // }
 
-    public function getAdventure(){
-        $adventures = Adventure::orderBy('created_at','asc')->paginate(10);
-        return view('home.adventure.index')->with('adventures', $adventures);
+    // public function getAdventure(){
+    //     $adventures = Adventure::orderBy('created_at','asc')->paginate(10);
+    //     return view('home.adventure.index')->with('adventures', $adventures);
 
         //$user_id = auth()->user()->id;
         //$user = User::find($user_id);
         //return view('home.protocol.index')->with('protocols', $protocols);//->with('protocols', $user->protocols);
         
-    }
+    // }
 
 
     public function getCreateGroup()
@@ -165,5 +168,14 @@ class HomeController extends Controller
             Session::put('error', 'new');
             return redirect()->back();
         }
+    }
+
+    public function getNpc(){
+        $npcs = Npc::all();
+        return view('home.npcs')->with('npcs', $npcs);   
+    }
+    public function getPlaces(){
+        $places = Place::all();
+        return view('home.places')->with('places', $places);   
     }
 }

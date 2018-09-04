@@ -23,18 +23,22 @@ Route::get('/joingroup', 'HomeController@getJoinGroup'); //Gruppe erstellen Seit
 Route::post('/creategroup/join', 'HomeController@postCreateGroupJoin');
 Route::post('/creategroup/new', 'HomeController@postCreateGroupNew');
 
-Route::get('/home', 'HomeController@getProtocol'); //Protokollseite
-Route::post('/home', 'HomeController@postProtocol'); //Protokollseite
+// Route::get('/home', 'HomeController@getProtocol'); //Protokollseite
+// Route::post('/home', 'HomeController@postProtocol'); //Protokollseite
 
-Route::resource('protocol', 'ProtocolController');
+Route::resource('/home', 'ProtocolController', [        //Protokollseite
+    'except' => ['create', 'show']
+]);
 
-/*Route::get('/home/adventure', 'HomeController@getAdventure'); //Abenteuerseite (nur für Meister sichtbar)
-Route::post('/home/adventure', 'HomeController@postAdventure'); //Abenteuerseite (nur für Meister sichtbar)
-Route::post('/home/adventure', 'HomeController@storeAdventure');*/
+//Route::get('/home/adventure', 'HomeController@getAdventure'); //Abenteuerseite (nur für Meister sichtbar)
+//Route::post('/home/adventure', 'HomeController@postAdventure'); //Abenteuerseite (nur für Meister sichtbar)
 
-Route::resource('adventure', 'AdventureController');
+Route::resource('home/adventure', 'AdventureController',[       //Abenteuerseite (nur für Meister sichtbar)
+    'except' => ['create', 'show']
+]);
 
 Route::get('/home/npcs', 'HomeController@getNpc'); //NPC Übersicht (nur von Meister bearbeitbar)
+
 Route::get('/home/npcs/edit', 'HomeController@getNpcEdit'); //NPC bearbeiten (nur für Meister sichtbar)
 Route::post('/home/npcs/edit', 'HomeController@postNpcEdit'); //NPC bearbeiten (nur für Meister sichtbar)
 Route::get('/home/places', 'HomeController@getPlaces'); //Ort Übersicht (nur von Meister bearbeitbar)
@@ -67,11 +71,11 @@ Route::get('/profile/name', 'ProfileController@getName'); //Name und Email ände
 Route::post('/profile/name', 'ProfileController@postName'); //Name und Email ändern
 
 Route::get('/rules', 'RulesController@getIndex'); //Midgard Seite
-Route::get('/rules/weapons', 'RulesController@getIndex'); //Waffen Seite
-Route::get('/rules/runes', 'RulesController@getIndex'); //Runen Seite
-Route::get('/rules/potions', 'RulesController@getIndex'); //Tränke Seite
-Route::get('/rules/character_file', 'RulesController@getIndex'); //Charakterbogen Seite
-Route::get('/rules/fail_table', 'RulesController@getIndex'); //Patzertabelle Seite
+Route::get('/rules/weapons', 'RulesController@getWeapons'); //Waffen Seite
+Route::get('/rules/runes', 'RulesController@getRunes'); //Runen Seite
+Route::get('/rules/potions', 'RulesController@getPotions'); //Tränke Seite
+Route::get('/rules/character_file', 'RulesController@getCharacterfile'); //Charakterbogen Seite
+Route::get('/rules/fail_table', 'RulesController@getFailtable'); //Patzertabelle Seite
 
 //pages visible for all
 //pages visible for players

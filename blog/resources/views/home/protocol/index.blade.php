@@ -39,7 +39,7 @@
 
                                     @if(!Auth::guest())
                                         @if(Auth::user()->id == $protocol->user_id)
-                                            <a href="protocol/{{$protocol->id}}/edit" class="btn btn-default">Bearbeiten</a>
+                                            <a href="home/{{$protocol->id}}/edit" class="btn btn-default">Bearbeiten</a>
                                             {!!Form::open(['action' => ['ProtocolController@destroy', $protocol->id], 'method' => 'POST', 'onsubmit' => 'return ConfirmDelete()', 'class' => 'pull-right delete'])!!}
                                                 {{Form::hidden('_method', 'DELETE')}}
                                                 {{Form::submit('Löschen', ['class' => 'btn btn-danger'])}}
