@@ -10,11 +10,12 @@ use App\Models\Ability;
 use App\Models\Inventory;
 use Request;
 use Validator;
+use Auth;
 
 class PlayController extends Controller
 {
   public function getPlay(){
-    $character = Character::where('user', 'Klara')->first();
+    $character = Character::where('user', Auth::user()->name)->first();
     $jobs = Job::orderBy('name','asc')->get();
     $weapons = Weapon::orderBy('name','asc')->get();
     $armours = Armour::orderBy('name','asc')->get();

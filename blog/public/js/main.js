@@ -1,3 +1,9 @@
+var abilityname;
+var abilitybase;
+var abilitybonus;
+var openDice = true;
+var woAbility = false;
+
 //--------Bonuspunkte /character/abilities-------
 function getNumber(points,name){
     for(var i=1;i<=points;i++){
@@ -40,15 +46,22 @@ function throwDice(){
   }
   $("#testDice").html(open); 
   $("#testDiceUnmodified").html(unmodified);
-  
-  var $abilitypointResult = $('#chosenAbility').val();
-  $("#abilitypoint-result").html($abilitypointResult); 
+  if(openDice){
+    $('#play_dice').text(open);
+    if(woAbility){
+      $('#play_result').text(open);
+    }else{
+      $('#play_result').text(abilitybase+abilitybonus+open);
+    }
+  }else{
+    $('#play_dice').text(unmodified);
+    if(woAbility){
+      $('#play_result').text(unmodified);
+    }else{
+      $('#play_result').text(abilitybase+abilitybonus+unmodified);
+    }
+  }  
 
-  // if($('#withoutAbility').prop('checked')){
-  //   $('#testDice').html(open); 
-  //   $('#testDiceUnmodified').html(unmodified);
-  // }
-  
 }
 function throw_W10(){
   return Math.floor(Math.random() * 10); 
@@ -68,27 +81,35 @@ function throw_W10_open_up()
 
 
 //---------Fertigkeiten Auswahl: Spielseite----------
-function saveAbility(name,count){
+function saveAbility(name,base1, base2,bonus){
+  var base= base1 + base2;
+  abilitybase = base;
+  abilitybonus = bonus;
   $('.ability').removeClass('selectedAbility');
   var element = '#playAbility-'+name;
   $(element).addClass('selectedAbility');
-  $('#chosenAbility').val(count);
+  $('.abilityresult').show();
   $('#withoutAbility').prop('checked',false);
+  $('#play_ability').text($(element).text());
+  $('#play_base').text(base);
+  $('#play_bonus').text(bonus);
 }
 
 function deleteSelection(){
   if($('#withoutAbility').prop('checked')){
     $('.ability').removeClass('selectedAbility');
-    $('#chosenAbility').val('');
+    $('.abilityresult').hide();
+    woAbility = true;
+  }else{
+    woAbility = false;
+    $('.abilityresult').show();
   }
 }
 function changeDice(){
   if($('#withoutOpen').prop('checked')){
-    $('.dice.open').hide()
-    $('.dice.modified').show()
+    openDice = false;
   }else{
-    $('.dice.modified').hide()
-    $('.dice.open').show()
+    openDice = true;
   }
 }
 

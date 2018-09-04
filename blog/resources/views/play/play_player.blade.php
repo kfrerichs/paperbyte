@@ -21,8 +21,10 @@
   background-color:brown;
   color:white;
 }
+.abilityresult{
+  display:none;
+}
 </style>
-
 <!-- <form method="post" action="{{url('/play')}}" class="playformular"> -->
   @csrf
   <p class="dice open">Offener Wurf:<span id="testDice">0</span></p></br>
@@ -36,6 +38,32 @@
   <!-- <button class="btn btn-info" onClick="throwDiceUnmodified()">Würfeln ohne Fertigkeit</button> -->
   <!-- <button type="submit" class="savechanges">Änderungen speichern</button> -->
 <!-- </form> -->
+  <div class="output">
+    <div class="row abilityresult">
+      <span class="label">Fertigkeit:</span>
+      <span class="data" id="play_ability"></span>
+    </div>
+    <div class="row abilityresult">
+      <span class="label">Grundwert:</span>
+      <span class="data" id="play_base"></span>
+    </div>
+    <div class="row abilityresult">
+      <span class="label">Bonus:</span>
+      <span class="data" id="play_bonus"></span>
+    </div>
+    <!-- <div class="row">
+      <span class="label">Modifikatoren durch das Inventar:</span>
+      <span class="data" id="play_modifier"></span>
+    </div> -->
+    <div class="row">
+      <span class="label">Würfel:</span>
+      <span class="data" id="play_dice"></span>
+    </div>
+    <div class="row">
+      <span class="label">Ergebnis:</span>
+      <span class="data" id="play_result"></span>
+    </div>
+  </div>
   <input type="hidden" name="chosenAbility" id="chosenAbility" value="">
   <div class="abilities">
   @foreach($abilities as $ability)
@@ -43,10 +71,11 @@
       $bonus1 = $ability->attr_1; 
       $bonus2 = $ability->attr_2;
       $abilityname = $ability->engl;
-      $abilitypoints = $character->$bonus1 + $character->$bonus2 + $character->$abilityname;
+      /*$abilitybonus = $character->$bonus1 + $character->$bonus2;
+      $abilitypoints = $character->$bonus1 + $character->$bonus2 + $character->$abilityname; */
     @endphp
-    <div class="ability" id="playAbility-{{$ability->engl}}" onClick="saveAbility('{{$ability->engl}}',{{$abilitypoints}})">{{$ability->name}}</div>
+    <div class="ability" id="playAbility-{{$ability->engl}}" onClick="saveAbility('{{$ability->engl}}',{{$character->$bonus1}},{{$character->$bonus2}},{{$character->$abilityname}})">{{$ability->name}}</div>
   @endforeach
   </div>
- 
+
 @endsection​

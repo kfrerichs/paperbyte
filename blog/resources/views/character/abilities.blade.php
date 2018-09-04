@@ -6,6 +6,7 @@
   list-style-type:none;
   display:flex;
   color:grey;
+  font-size: 20px;
 }
 .bonusList li:nth-child(2n+2){
   margin-left:5px;
@@ -56,7 +57,7 @@
                   $point = $i;
                 }
             @endphp
-              <li id="{{$abilityname}}-{{$point}}" class="{{$selected}}" onClick="getNumber({{$i}},'{{$abilityname}}')"><i class="fas fa-circle"></i></li>
+              <li id="{{$abilityname}}-{{$point}}" class="{{$selected}}" onClick="getNumber({{$i}},'{{$abilityname}}')">x</li>
             @php
               }
             @endphp
