@@ -104,9 +104,11 @@
     </div>
   </div>
   <div class="characterformuluar-bottom">
+    <label for="personality">Persönlichkeit</label>
+    <textarea name="personality" id="personality">{{$character->personality}}</textarea>
     <label for="looks">Aussehen</label>
     <textarea name="looks" id="looks">{{$character->looks}}</textarea>
-    <label for="background">Persönlichkeit</label>
+    <label for="background">Hintergrund</label>
     <textarea name="background" id="background" >{{$character->background}}</textarea> 
   </div>
   <div class="attributes">
@@ -119,73 +121,73 @@
         <tr>
           <td>List(Li)</td>
           <td>
-            <input type="text" name="li_rank" id="li_rank" value="{{old('li_rank')?old('li_rank'):$character->li_rank}}">
+            <input type="number" name="li_rank" id="li_rank" value="{{old('li_rank')?old('li_rank'):$character->li_rank}}">
           </td>
           <td>
-            <input type="text" name="li" id="li" value="{{old('li')?old('li'):$character->li}}">
+            <input type="number" name="li" id="li" value="{{old('li')?old('li'):$character->li}}">
           </td>
         </tr>
         <tr>
           <td>Logik(Lo)</td>
           <td>
-            <input type="text" name="lo_rank" id="lo_rank" value="{{old('lo_rank')?old('lo_rank'):$character->lo_rank}}">
+            <input type="number" name="lo_rank" id="lo_rank" value="{{old('lo_rank')?old('lo_rank'):$character->lo_rank}}">
           </td>
           <td>
-            <input type="text" name="lo" id="lo" value="{{old('lo')?old('lo'):$character->lo}}">
+            <input type="number" name="lo" id="lo" value="{{old('lo')?old('lo'):$character->lo}}">
           </td>
         </tr>
         <tr>
           <td>Intuition(In)</td>
           <td>
-            <input type="text" name="in_rank" id="in_rank" value="{{old('in_rank')?old('in_rank'):$character->in_rank}}" >
+            <input type="number" name="in_rank" id="in_rank" value="{{old('in_rank')?old('in_rank'):$character->in_rank}}" >
           </td>
           <td>
-            <input type="text" name="in" id="in" value="{{old('in')?old('in'):$character->in}}" >
+            <input type="number" name="in" id="in" value="{{old('in')?old('in'):$character->in}}" >
           </td>
         </tr>
         <tr>
           <td>Stärke(St)</td>
           <td>
-            <input type="text" name="st_rank" id="st_rank" value="{{old('st_rank')?old('st_rank'):$character->st_rank}}">
+            <input type="number" name="st_rank" id="st_rank" value="{{old('st_rank')?old('st_rank'):$character->st_rank}}">
           </td>
           <td>
-            <input type="text" name="st" id="st" value="{{old('st')?old('st'):$character->st}}">
+            <input type="number" name="st" id="st" value="{{old('st')?old('st'):$character->st}}">
           </td>
         </tr>
         <tr>
           <td>Reaktion(Re)</td>
           <td>
-            <input type="text" name="re_rank" id="re_rank" value="{{old('re_rank')?old('re_rank'):$character->re_rank}}">
+            <input type="number" name="re_rank" id="re_rank" value="{{old('re_rank')?old('re_rank'):$character->re_rank}}">
           </td>
           <td>
-            <input type="text" name="re" id="re" value="{{old('re')?old('re'):$character->re}}">
+            <input type="number" name="re" id="re" value="{{old('re')?old('re'):$character->re}}">
           </td>
         </tr>
         <tr>
           <td>Geschicklichkeit(Ge)</td>
           <td>
-            <input type="text" name="ge_rank" id="ge_rank" value="{{old('ge_rank')?old('ge_rank'):$character->ge_rank}}">
+            <input type="number" name="ge_rank" id="ge_rank" value="{{old('ge_rank')?old('ge_rank'):$character->ge_rank}}">
           </td>
           <td>
-            <input type="text" name="ge" id="ge" value="{{old('ge')?old('ge'):$character->ge}}">
+            <input type="number" name="ge" id="ge" value="{{old('ge')?old('ge'):$character->ge}}">
           </td>
         </tr>
         <tr>
           <td>Selbstdisziplin(Sd)</td>
           <td>
-            <input type="text" name="sd_rank" id="sd_rank" value="{{old('sd_rank')?old('sd_rank'):$character->sd_rank}}">
+            <input type="number" name="sd_rank" id="sd_rank" value="{{old('sd_rank')?old('sd_rank'):$character->sd_rank}}">
           </td>
           <td>
-            <input type="text" name="sd" id="sd" value="{{old('sd')?old('sd'):$character->sd}}">
+            <input type="number" name="sd" id="sd" value="{{old('sd')?old('sd'):$character->sd}}">
           </td>
         </tr>
         <tr>
           <td>Charisma(Ch)</td>
           <td>
-            <input type="text" name="ch_rank" id="ch_rank" value="{{old('ch_rank')?old('ch_rank'):$character->ch_rank}}">
+            <input type="number" name="ch_rank" id="ch_rank" value="{{old('ch_rank')?old('ch_rank'):$character->ch_rank}}">
           </td>
           <td>
-            <input type="text" name="ch" id="ch" value="{{old('ch')?old('ch'):$character->ch}}">
+            <input type="number" name="ch" id="ch" value="{{old('ch')?old('ch'):$character->ch}}">
           </td>
         </tr>
       </table>

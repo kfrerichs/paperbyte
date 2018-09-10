@@ -1,8 +1,15 @@
 var abilityname;
-var abilitybase;
-var abilitybonus;
+var abilitybase = 0;
+var abilitybonus = 0;
 var openDice = true;
 var woAbility = false;
+var costs;
+var selectedRune = false;
+var selectedAbility = false;
+//-------Dropdown Logout-------
+$(document).ready(function() {
+  $(".dropdown-toggle").dropdown();
+});
 
 //--------Bonuspunkte /character/abilities-------
 function getNumber(points,name){
@@ -34,34 +41,92 @@ function getNumber(points,name){
   }
 //--------Würfel /play-----------
 function throwDice(){
-  var unmodified = throw_W10() + 1;
-  var open = unmodified;
-  if (open <= 1)
-  {
-    open -= throw_W10_open_up();
-  }
-  if (open >= 10)
-  {
-    open += throw_W10_open_up();
-  }
-  $("#testDice").html(open); 
-  $("#testDiceUnmodified").html(unmodified);
-  if(openDice){
-    $('#play_dice').text(open);
-    if(woAbility){
-      $('#play_result').text(open);
-    }else{
-      $('#play_result').text(abilitybase+abilitybonus+open);
+  if(selectedRune == true || selectedAbility == true || woAbility == true){
+    var unmodified = throw_W10() + 1;
+    var open = unmodified;
+    if (open <= 1)
+    {
+      open -= throw_W10_open_up();
+      $('.patzer').text('PATZER!');
     }
-  }else{
-    $('#play_dice').text(unmodified);
-    if(woAbility){
-      $('#play_result').text(unmodified);
-    }else{
-      $('#play_result').text(abilitybase+abilitybonus+unmodified);
+    else if (open >= 10)
+    {
+      open += throw_W10_open_up();
+      $('.patzer').text('Open End!');
     }
-  }  
+    else{
+      $('.patzer').text('');
+    }
 
+    if(openDice){
+      $('#play_dice').text(open);
+      if(woAbility){
+        $('#play_result').text(open);
+      }else{
+        $('#play_result').text(abilitybase+abilitybonus+open);
+      }
+    }else{
+      $('#play_dice').text(unmodified);
+      if(woAbility){
+        $('#play_result').text(unmodified);
+      }else{
+        $('#play_result').text(abilitybase+abilitybonus+unmodified);
+      }
+    }
+    costs = $('#runeCosts').val();
+    var getMp = $('#mp').val();
+    if(costs != 0){
+      $('#mp').val(getMp-costs);
+      $('#pointForm').submit();
+    }
+  }
+  else{
+    $('.patzer').text('Bitte wähle eine Fertigkeit oder Rune aus.');
+  }
+}
+function throwDiceMaster(){
+  //if(selectedRune == true || selectedAbility == true || woAbility == true){
+    var unmodified = throw_W10() + 1;
+    var open = unmodified;
+    if (open <= 1)
+    {
+      open -= throw_W10_open_up();
+      $('.patzer').text('PATZER!');
+    }
+    else if (open >= 10)
+    {
+      open += throw_W10_open_up();
+      $('.patzer').text('Open End!');
+    }
+    else{
+      $('.patzer').text('');
+    }
+
+    if(openDice){
+      $('#play_dice').text(open);
+      if(woAbility){
+        $('#play_result').text(open);
+      }else{
+        $('#play_result').text(abilitybase+abilitybonus+open);
+      }
+    }else{
+      $('#play_dice').text(unmodified);
+      if(woAbility){
+        $('#play_result').text(unmodified);
+      }else{
+        $('#play_result').text(abilitybase+abilitybonus+unmodified);
+      }
+    }
+    // costs = $('#runeCosts').val();
+    // var getMp = $('#mp').val();
+    // if(costs != 0){
+    //   $('#mp').val(getMp-costs);
+    //   // $('#pointForm').submit();
+    // }
+  /*}
+  else{
+    $('.patzer').text('Bitte wähle eine Fertigkeit oder Rune aus.');
+  }*/
 }
 function throw_W10(){
   return Math.floor(Math.random() * 10); 
@@ -78,33 +143,6 @@ function throw_W10_open_up()
   }
   return result;
 }
-
-
-//---------Fertigkeiten Auswahl: Spielseite----------
-function saveAbility(name,base1, base2,bonus){
-  var base= base1 + base2;
-  abilitybase = base;
-  abilitybonus = bonus;
-  $('.ability').removeClass('selectedAbility');
-  var element = '#playAbility-'+name;
-  $(element).addClass('selectedAbility');
-  $('.abilityresult').show();
-  $('#withoutAbility').prop('checked',false);
-  $('#play_ability').text($(element).text());
-  $('#play_base').text(base);
-  $('#play_bonus').text(bonus);
-}
-
-function deleteSelection(){
-  if($('#withoutAbility').prop('checked')){
-    $('.ability').removeClass('selectedAbility');
-    $('.abilityresult').hide();
-    woAbility = true;
-  }else{
-    woAbility = false;
-    $('.abilityresult').show();
-  }
-}
 function changeDice(){
   if($('#withoutOpen').prop('checked')){
     openDice = false;
@@ -112,7 +150,105 @@ function changeDice(){
     openDice = true;
   }
 }
+//---------MP und TP /play-----------
+function regenerate(){
+  var maxHP = $('#max_hp').val();
+  var maxMP = $('#max_mp').val();
+  $('#hp').val($('#max_hp').val());
+  $('#mp').val($('#max_mp').val());
+  $('#pointForm').submit();
+}
+function savePoints(){
+  $('#pointForm').submit();
+}
+//---------Fertigkeiten Auswahl: /play---------
 
-$(document).ready(function() {
-  $(".dropdown-toggle").dropdown();
-});
+function saveAbility(name, base1, base2, bonus){
+  var base= base1 + base2;
+  abilitybase = base;
+  abilitybonus = bonus;
+  $('.ability').removeClass('selectedBox');
+  $('.rune').removeClass('selectedBox');
+  $('.showRune').hide();
+  var element = '#playAbility-'+name;
+  $(element).addClass('selectedBox');
+  $('.abilityresult').show();
+  $('#withoutAbility').prop('checked',false);
+  woAbility= false;
+  $('#play_dice').text('');
+  $('#play_result').text('');
+  $('#play_ability').text($(element).text());
+  $('#play_base').text(base);
+  $('#play_bonus').text(bonus);
+  selectedAbility = true;
+  if(element != '#playAbility-runes_use'){
+    $('#runeCosts').val(0);
+    selectedRune = false;
+  }
+}
+function deleteSelection(){
+  if($('#withoutAbility').prop('checked')){
+    $('.ability').removeClass('selectedBox');
+    $('.abilityresult').hide();
+    $('#play_ability').text('');
+    $('#play_base').text('');
+    $('#play_bonus').text('');
+    $('#runeCosts').val(0);
+    $('#play_dice').text('');
+    $('#play_result').text('');
+    abilitybase = 0;
+    abilitybonus = 0;
+    woAbility = true;
+    selectedAbility = false;
+    selectedRune = false;
+  }else{
+    woAbility = false;
+    $('.abilityresult').show();
+    $('#play_dice').text('');
+    $('#play_result').text('');
+  }
+}
+//---------Runen Auswahl: /play--------------
+function saveRune(name, bonus, attr1,attr2){
+  $('.showRune').hide();
+  $('.rune').removeClass('selectedBox');
+  $('.effects-head').removeClass('selectedBox');
+  $('.chosen').text('');
+  $('#play_dice').text('');
+  $('#play_result').text('');
+  selectedRune = false;
+  saveAbility('runes_use',attr1,attr2,bonus);
+  var element = '#playRune-'+name;
+  $(element).addClass('selectedBox');
+  var rune = '.'+name
+  $(rune).show();
+  if(bonus < 12){
+    $('.expert').children('.effects-head').addClass('disabled').attr('onClick','');
+  }
+  else if(bonus < 8){
+    $('.adept').children('.effects-head').addClass('disabled').attr('onClick','');
+    $('.expert').children('.effects-head').addClass('disabled').attr('onClick','');
+  }
+  if(bonus < 4){
+    $('.novice').children('.effects-head').addClass('disabled').attr('onClick','');
+    $('.adept').children('.effects-head').addClass('disabled').attr('onClick','');
+    $('.expert').children('.effects-head').addClass('disabled').attr('onClick','');
+    
+  }
+}
+function chooseLevel(level, name, price){
+  $('.effects-head').removeClass('selectedBox');
+  if($('.effects-head') != $('.disabled')){
+    selectedRune = true;
+    var rune_name = $(this).parents('.effects').siblings('h3').text();
+    var element = '.'+level
+    $(element).children('.effects-head').addClass('selectedBox');
+    $('.chosen').text(name+' wurde gewählt. '+rune_name+' für '+price+' MP durch Würfeln wirken!');
+    $('#runeCosts').val(price);
+  }
+  else{
+    $('.chosen').text('Du kannst diese Wirkung noch nicht verwenden');
+    
+  }
+}
+

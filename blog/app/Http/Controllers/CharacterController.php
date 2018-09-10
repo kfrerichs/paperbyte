@@ -19,7 +19,7 @@ class CharacterController extends Controller
     $character = Character::where('user', Auth::user()->name)->first();
     $jobs = Job::orderBy('name','asc')->get();
     $weapons = Weapon::orderBy('name','asc')->get();
-    $armours = Armour::orderBy('name','asc')->get();
+    $armours = Armour::orderBy('id','asc')->get();
     return view('character.character_overview')->with('character', $character)->with('jobs', $jobs)->with('armours', $armours)->with('weapons', $weapons);
   }
   public function postOverview(){
@@ -60,12 +60,28 @@ class CharacterController extends Controller
     $character->sd= Request::input('sd');
     $character->ch_rank= Request::input('ch_rank');
     $character->ch= Request::input('ch');
+
+    $st= $character->st_rank;
+    $sd= $character->sd_rank;
+    $ge= $character->ge_rank;
+    if($character->max_hp == 0 && $character->max_mp == 0){
+      $character->max_hp= (2*$sd)+(2*$st)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10);
+      $character->max_mp= (2*$ge)+(2*$sd)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10)+rand(1,10);
+      $character->mp= $character->max_mp;
+      $character->hp= $character->max_hp;
+    }
     $character->save();
     return redirect('character');
     
   }
   public function getName(){
-    return view('character.character_name');
+    $character = Character::where('user', Auth::user()->name)->first();
+    if($character == ''){
+      return view('character.character_name');
+    }
+    else{
+      return redirect('character');
+    }
   }
   public function postName(){
     $character = new Character;
@@ -82,7 +98,12 @@ class CharacterController extends Controller
     $jobs = Job::orderBy('name','asc')->get();
     $weapons = Weapon::orderBy('name','asc')->get();
     $armours = Armour::orderBy('name','asc')->get();
-    return view('character.character_initialize')->with('character', $character)->with('jobs', $jobs)->with('armours', $armours)->with('weapons', $weapons);
+    if($character == ''){
+      return view('character.character_initialize')->with('character', $character)->with('jobs', $jobs)->with('armours', $armours)->with('weapons', $weapons);
+    }
+    else{
+      return redirect('character');
+    }
   }
   public function postNew(){
     $character = Character::where('user', Auth::user()->name)->first();
@@ -116,7 +137,7 @@ class CharacterController extends Controller
     $character->ch_rank= Request::input('ch_rank');
     $character->ch= Request::input('ch');
     $character->save();
-    return redirect('/protocol');
+    return redirect('/home');
   }
   
   public function getAbilities(){
