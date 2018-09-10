@@ -1,6 +1,22 @@
 @extends('layouts.main')
 
 @section('content')
+<style>
+    h4{
+        margin-top: 30px;
+    }
+    table{
+        border: 1px solid #4d3328;
+        font-family: 'EagleLake', Helvetica, sans-serif;
+        font-size: 14px;
+        /* width: 100%; */
+    }
+    table td, table th{
+        padding: 8px;
+    }
+</style>
+@include('inc.homeBar')
+
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-md-offset-2">
@@ -23,7 +39,7 @@
                                 <td>{{$npc->meetingpoint_id}}</td>
                             </tr>
                             <tr>
-                                <td></td>
+                                <td>Hintergrund</td>
                                 <td>{{$npc->background}}</td>
                             </tr> 
                         </table>

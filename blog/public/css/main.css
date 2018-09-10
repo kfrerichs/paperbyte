@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'EagleLake';
+    src: url('../fonts/EagleLake-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    color: #4d3328;
+}
 .menuIcon{
     height: 100px;
 }
@@ -7,16 +17,127 @@
     list-style: none;
     margin: 0px 30px 10px 0px;
 }
+.navDropdown a{
+    color: #4d3328;
+}
+.navbar-nav .dropdown-menu, .characterformular textarea, .box, input, select{
+    border: 1px solid #dac4ab;
+}
 
+.navbar{
+    height: 120px;
+}
 .nav-item{
     margin-right: 30px;
+    height: 100%;
+    width: auto;
 }
 
 .subNavLi{
     display: inline;
     margin-right: 30px;
 }
+.subNavLi a{
+    color: #4d3328;
+}
+
+a:hover{
+    text-decoration: none;
+    color: #32cdcd;
+}
 
 .subNavUl{
     list-style: none;
+}
+
+hr{
+    border-color: #dac4ab;
+}
+.form-group{
+    color: #32cdcd;
+}
+.form-group .form-control{
+    color: #4d3328;
+}
+#message-area .ckeditor{
+    color: #32cdcd;
+}
+
+.btn-primary, .btn-info{
+    background-color: #4d3328;
+    color: #ffffff!important;
+    border: none;
+}
+
+.btn-info{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.btn-primary:hover, .btn-info:hover{
+    background-color: #32cdcd!important;
+}
+.btn-danger{
+    background-color: #4d3328;
+    color: #ffffff;
+    border: none;
+}
+.btn-danger:hover{
+    background-color: #32cdcd;
+}
+.btn-default{
+    color: #4d3328;
+}
+.btn-default:hover{
+    color: #32cdcd;
+}
+
+h1, h2, h3, h4{
+    font-family: 'EagleLake', Helvetica, sans-serif;
+}
+
+.table{
+    color: #4d3328;
+    font-family: 'EagleLake', Helvetica, sans-serif;
+}
+.table .thead-dark th{
+    border-color: #4d3328;
+    background-color: #4d3328; 
+    font-weight: normal;
+}
+.table td{
+    border-top: 1px solid #dac4ab;
+    font-size: 13px;
+}
+
+.table th{
+    border-top: 1px solid #dac4ab;
+}
+
+.box{
+    margin-top: 20px;
+    margin-right: 20px;
+    width: 20%;
+    height: auto;
+    padding: 10px;
+    float: left;
+    text-align: center;
+    font-family: 'EagleLake', Helvetica, sans-serif;
+    color: #4d3328;
+}
+
+.box:hover{
+    color: #32cdcd;
+}
+.nav-link, .btn-link{
+    color: #4d3328;
+}
+.btn-link:hover, .nav-link:hover{
+    text-decoration: none;
+    color: #32cdcd;
+}
+
+.form-control, label, textarea, input, select{
+    color: #4d3328;
+    font-family: 'EagleLake', Helvetica, sans-serif;
 }

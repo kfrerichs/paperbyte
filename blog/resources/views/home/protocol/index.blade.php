@@ -65,7 +65,10 @@
 
 <script src="{{ asset('vendor/unisharp/laravel-ckeditor/ckeditor.js') }}"></script>
 <script>
-    CKEDITOR.replace( 'message-area')
+    CKEDITOR.replace( 'message-area', {
+        language: 'de',
+        uiColor: '#ffffff'
+    });
 </script>
 
 <script>                                        // Löschen bestätigen

@@ -116,7 +116,7 @@ class CharacterController extends Controller
     $character->ch_rank= Request::input('ch_rank');
     $character->ch= Request::input('ch');
     $character->save();
-    return redirect('/protocol');
+    return redirect('/home');
   }
   
   public function getAbilities(){

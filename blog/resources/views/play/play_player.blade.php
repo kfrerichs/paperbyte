@@ -13,20 +13,32 @@
 .ability{
   width:150px;
   text-align:center;
-  border: 1px solid brown;
+  border: 1px solid #4d3328;
   margin:5px;
   padding:10px;
 }
-.selectedAbility{
-  background-color:brown;
-  color:white;
+.selectedAbility, .ability:hover{
+  background-color: #4d3328;
+  color: #ffffff;
 }
 .abilityresult{
   display:none;
 }
+h1{
+  padding-bottom: 20px;
+}
+/* .btn-info{
+  background-color: #4d3328;
+  color: #ffffff;
+  border: none;
+}
+a{
+  color: #fff;
+} */
 </style>
 <!-- <form method="post" action="{{url('/play')}}" class="playformular"> -->
   @csrf
+  <h1>Spielen</h1>
   <p class="dice open">Offener Wurf:<span id="testDice">0</span></p></br>
   <p class="dice modified">Unmodifizierter Wurf:<span id="testDiceUnmodified">0</span></p></br>
   <p>Fertigkeitswurf:<span id="abilitypoint-result">0</span></p></br>

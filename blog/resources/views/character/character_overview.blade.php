@@ -13,6 +13,7 @@
 } */
 .characterformular textarea{
   height: 100px;
+  width: 100%;
 }
 .characterformular-top{
   display:flex;
@@ -27,6 +28,7 @@
 .characterformular-right{
   display:flex;
   flex-flow: row wrap;
+  width: 100%;
   justify-content: space-between;
 }
 .characterformular-right textarea{
@@ -35,18 +37,72 @@
 .box{
   display:flex;
   flex-direction:column;
-  width: 50%;
+  width: 45%;
+  margin-bottom: 20px;
 }
 .box .input-row{
   padding: 10px 0;
+  margin-bottom: 20px;
 }
 .box .input-row label{
   width: 100px;
+  text-align: left;
+}
+.gear .input-row select{
+  margin-bottom: 20px;
+  width: 100%
+}
+.gear .input-row label{
+  width: 200px;
+}
+.form-control, label, textarea, input, select{
+  width: 100%;
+}
+label{
+  display: block;
+  width: 50%;
+  float:left;
 }
 .savechanges{
   display:block;
   margin-left: auto;
-  margin-right: 10vw;
+  /* margin-right: 10vw; */
+  margin-right: 20px;
+  margin-top: 20px;
+  margin-bottom: 100px;
+  font-family: 'EagleLake', Helvetica, sans-serif;
+}
+#placeholder{
+  width: 200px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+textarea{
+  margin-bottom: 20px;
+}
+#fileToUpload{
+  display: none;
+}
+#buttonUpload, .savechanges{
+  width: 200px;
+  font-size: 12px;
+  background-color: #4d3328;
+  border: none;
+  color: #ffffff;
+  padding: 5px;
+}
+#buttonUpload:hover, .savechanges:hover{
+  background-color: #32cdcd;
+}
+table{
+  margin-top: 20px;
+  font-family: 'EagleLake', Helvetica, sans-serif;
+  border-collapse: separate;
+  border-spacing: 10px 20px;
+}
+.gear{
+  margin-top: 20px;
+  margin-right: 20px;
 }
 
 </style>
@@ -55,8 +111,9 @@
   @csrf
   <div class="characterformular-top">
     <div class="characterformular-left">
-      <img src="http://placehold.it/200x300" alt="">
+      <img id="placeholder" src="http://placehold.it/200x300" alt="">
       <input type="file" name="fileToUpload" id="fileToUpload">
+      <input type="button" id="buttonUpload" value="Profilbild wählen" onclick="document.getElementById('fileToUpload').click();"/>
     </div>
     <div class="characterformular-right">
       <div class="box">
@@ -99,12 +156,13 @@
             <input type="number" name="weight" id="weight" value="{{old('weight')?old('weight'):$character->weight}}">
           </div>
       </div>
-      <label for="family">Familie</label>
-      <textarea name="family" id="family">{{$character->family}}</textarea>
+      <!-- <label for="family">Familie</label>
+      <textarea name="family" id="family">{{$character->family}}</textarea> -->
     </div>
   </div>
-  <div class="characterformuluar-bottom">
-    <label for="looks">Aussehen</label>
+  <div class="characterformuluar-bottom" style="margin-right: 20px;">
+    <label for="family">Familie</label>
+    <textarea name="family" id="family">{{$character->family}}</textarea><label for="looks">Aussehen</label>
     <textarea name="looks" id="looks">{{$character->looks}}</textarea>
     <label for="background">Persönlichkeit</label>
     <textarea name="background" id="background" >{{$character->background}}</textarea> 
@@ -191,7 +249,7 @@
       </table>
         
     </div>
-  </div>
+  
   <div class="gear">
     <div class="input-row">
       <label for="weapon_1">Waffe 1</label>
@@ -220,5 +278,6 @@
   </div>
   <button type="submit" class="savechanges">Änderungen speichern</button>
 </form>
+</div>
 
 @endsection​
