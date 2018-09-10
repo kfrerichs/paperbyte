@@ -12,16 +12,24 @@ use App\Models\Inventory;
 use Request;
 use Validator;
 use Auth;
+use Illuminate\Support\Facades\Input;
 
 class CharacterController extends Controller
 {
   public function getOverview(){
+
+    if(Auth::user()->hasRole('master')) 
+    {
+      return redirect()->back();
+    }
+
     $character = Character::where('user', Auth::user()->name)->first();
     $jobs = Job::orderBy('name','asc')->get();
     $weapons = Weapon::orderBy('name','asc')->get();
     $armours = Armour::orderBy('id','asc')->get();
     return view('character.character_overview')->with('character', $character)->with('jobs', $jobs)->with('armours', $armours)->with('weapons', $weapons);
   }
+
   public function postOverview(){
     $character = Character::where('user', Auth::user()->name)->first();
     // $validator = Validator::make(Request::all(),array('name' => 'required|min:2'));
@@ -31,6 +39,16 @@ class CharacterController extends Controller
       //   }
       // $character = new Character();
     // $character->name= Request::input('name');
+
+    if(Input::hasFile('file')){
+      $file = Input::file('file');
+      $userId = (string)Auth::user()->id;
+      $picturename= $file->getClientOriginalName();
+      $filename = $userId.$picturename;
+      $file->move('images/character', $filename);
+      $character->image = $filename;
+    }
+
     $character->gender= Request::input('gender');
     $character->job_id= Request::input('job_id');
     $character->age= Request::input('age');
@@ -75,6 +93,11 @@ class CharacterController extends Controller
     
   }
   public function getName(){
+    if(Auth::user()->hasRole('master')) 
+    {
+      return redirect()->back();
+    }
+
     $character = Character::where('user', Auth::user()->name)->first();
     if($character == ''){
       return view('character.character_name');
@@ -82,6 +105,8 @@ class CharacterController extends Controller
     else{
       return redirect('character');
     }
+
+    
   }
   public function postName(){
     $character = new Character;
@@ -91,9 +116,13 @@ class CharacterController extends Controller
     $group = Group::where('username', Auth::user()->name)->where('charactername','=', '')->first();
     $group->charactername = Request::input('name');
     $group->save();
-    return redirect('character/new');
+    return redirect('character');
   }
   public function getNew($name=''){
+    if(Auth::user()->hasRole('master')) 
+    {
+      return redirect()->back();
+    }
     $character = Character::where('user', Auth::user()->name)->first();
     $jobs = Job::orderBy('name','asc')->get();
     $weapons = Weapon::orderBy('name','asc')->get();
@@ -141,6 +170,10 @@ class CharacterController extends Controller
   }
   
   public function getAbilities(){
+    if(Auth::user()->hasRole('master')) 
+    {
+      return redirect()->back();
+    }
     $abilities = Ability::orderBy('name','asc')->get();
     $character = Character::where('user', Auth::user()->name)->first();
     $findJob = Job::where('id',$character->job_id)->first();
@@ -161,6 +194,10 @@ class CharacterController extends Controller
     return redirect('character/abilities');
   }
   public function getInventory(){
+    if(Auth::user()->hasRole('master')) 
+    {
+      return redirect()->back();
+    }
     $character = Character::where('user', Auth::user()->name)->first();
     $inventories = Inventory::where('character_id', $character->id)->get();
     $abilities = Ability::orderBy('name','asc')->get();
@@ -178,6 +215,10 @@ class CharacterController extends Controller
     return redirect('character/inventory'); 
   }
   public function getDelete($id = null){
+    if(Auth::user()->hasRole('master')) 
+    {
+      return redirect()->back();
+    }
     $inventories = Inventory::find($id);
     if($inventories){
       $inventories->delete();

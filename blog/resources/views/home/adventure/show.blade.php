@@ -1,6 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
+
+@include('inc.homeBar')
+
     <a href="/adventure" class="btn btn-default">Go Back</a>
     <h1>{{$adventure->title}}</h1>
     <br><br>

@@ -1,6 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
+
+@include('inc.homeBar')
+
     <h1>Bearbeiten</h1>
     {!! Form::open(['action' => ['AdventureController@update', $adventure->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
         <div class="form-group">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Adventure;
+use Auth;
 
 class AdventureController extends Controller
 {
@@ -24,8 +25,15 @@ class AdventureController extends Controller
      */
     public function index()
     {
-        $adventures = Adventure::orderBy('created_at','asc') ->paginate(10);        //Paginate sinnvoll? -> Seite soll ja immer zum aktuellen scrollen aber lädt schneller
-        return view('home.adventure.index')->with('adventures', $adventures);   
+        if(Auth::user()->hasRole('master'))
+        {
+            $adventures = Adventure::orderBy('created_at','asc') ->paginate(10);        //Paginate sinnvoll? -> Seite soll ja immer zum aktuellen scrollen aber lädt schneller
+            return view('home.adventure.index')->with('adventures', $adventures);   
+        }
+        else
+        {
+            return redirect()->back(); 
+        }
     }
 
     /**
