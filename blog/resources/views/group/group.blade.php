@@ -12,12 +12,14 @@
                     @endphp
                     @foreach($allCharacters as $character)
                         @if($charactername == $character->name)
-                        <div>
-                        <span>{{$character->name}}</span>
-                        <span>{{$character->gender}}</span>
-                        <span>{{$character->hair}}</span>
-                        <span>{{$character->eyes}}</span>
-                        </div>
+                        <a href="{{ url('group/detail') }}">
+                            <div class="box">
+                                <span>{{$character->name}}</span>
+                                <!-- <span>{{$character->gender}}</span>
+                                <span>{{$character->hair}}</span>
+                                <span>{{$character->eyes}}</span> -->
+                            </div>
+                        </a>
                         @endif
                     @endforeach
                 @endforeach

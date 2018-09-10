@@ -1,7 +1,27 @@
 @extends('layouts.main')
 
 @section('content')
-
+<style>
+    h4{
+        margin-top: 30px;
+    }
+    table{
+        font-family: 'EagleLake', Helvetica, sans-serif;
+        font-size: 14px;
+        color: #4d3328;
+        width: 100%;
+    }
+    #imgCell{
+        width: 35%;
+    }
+    #imgCell img{
+        width: 100%;
+        height: auto;
+    }
+    #scriptCell{
+        padding-left: 20px;
+    }
+</style>
 @include('inc.homeBar')
 
 <div class="container">
@@ -14,15 +34,15 @@
                         <table>
                             <h4>{{$place->name}}</h4>
                             <tr>
-                                <td>
+                                <td id="imgCell">
                                     <!-- @php
                                         $img = 'images/' . $place->img_name;
                                     @endphp -->
                                     <img src="{{ asset('images/' . $place->img_name) }}" width="20%">
                                 </td>
-                            </tr>
-                            <tr>
-                                <td>{{$place->description}}</td>
+                                <td id="scriptCell">
+                                    {{$place->description}}
+                                </td>
                             </tr>
                         </table>
                     </div>

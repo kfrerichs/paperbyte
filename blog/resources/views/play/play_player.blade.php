@@ -16,7 +16,7 @@
   .ability{
     width:150px;
     text-align:center;
-    border: 1px solid brown;
+    border: 1px solid #4d3328;
     margin:5px;
     padding:10px;
     cursor:pointer;
@@ -41,9 +41,17 @@
     background-color:brown;
     color:white;
   }
+  .selectedBox, .ability:hover{
+    background-color: #4d3328;
+    color: #ffffff;
+  }
   .abilityresult{
     display:none;
   }
+  h1{
+    padding-bottom: 20px;
+  }
+
   .effects{
     display:flex;
     width: 500px;
@@ -69,7 +77,9 @@
   .showRune{
     display:none;
   }
+
 </style>
+  <h1>Spielen</h1>
   <form method="post" action="{{url('/play')}}" id="pointForm">
     @csrf
     <label for="hp">Trefferpunkte:</label>
@@ -81,6 +91,9 @@
     <a class="btn btn-default save" onClick="savePoints()">Änderung speichern</a>
     <a class="btn btn-default regenerate" onClick="regenerate()">TP und MP Regenerieren</a>
   </form>
+  <p class="dice open">Offener Wurf:<span id="testDice">0</span></p></br>
+  <p class="dice modified">Unmodifizierter Wurf:<span id="testDiceUnmodified">0</span></p></br>
+  <p>Fertigkeitswurf:<span id="abilitypoint-result">0</span></p></br>
   <label for="withoutOpen">Ohne Open-End</label>
   <input type="checkbox" name="withoutOpen" class="checkbox" id="withoutOpen" onClick="changeDice()"></br>
   <label for="withoutAbility">Ohne Fertigkeit</label>

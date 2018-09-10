@@ -1,6 +1,8 @@
 @extends('layouts.main')
 
 @section('content')
+
+@include('inc.homeBar')
     
 @include('inc.homeBar')
 

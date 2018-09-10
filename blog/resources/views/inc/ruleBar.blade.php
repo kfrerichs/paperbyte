@@ -15,19 +15,19 @@
                 Runen 
             </a>
         </li>
-        <li class="subNavLi"> 
-            <a href="{{ url('/rules/potions') }}"> 
-                Tränke 
+        <li class="subNavLi">
+            <a href="{{ url('/rules/character_file') }}">
+                Charakterbogen
             </a>
         </li>
-        <li class="subNavLi"> 
-            <a href="{{ url('/rules/character_file') }}"> 
-                Characternbogen 
+        <li class="subNavLi">
+            <a href="{{ url('/rules/fail_table') }}">
+                Patzertabelle
             </a>
         </li>
-        <li class="subNavLi"> 
-            <a href="{{ url('/rules/fail_table') }}"> 
-                Patzer 
+        <li class="subNavLi">
+            <a href="{{ url('/rules/potions') }}">
+                Tränkeliste
             </a>
         </li>
     </ul>

@@ -16,6 +16,10 @@ class GroupController extends Controller
         return view('group.group')->with('members', $members)->with('allCharacters', $allCharacters);
     }
     // public function getDetail(){
-    //     return view('group.group_character');   
+    //     $character = Character::where('user', Auth::user()->name)->first(); //Charakter des angemeldeten Users
+    //     $group = Group::where('charactername', $character->name)->first(); // Name der Gruppe in der der Charakter sich befindet
+    //     $members = Group::where('name',$group->name)->get();
+    //     // $allCharacters = Character::all();
+    //     return view('group.group_character')->with('members', $members)->with('allCharacters', $allCharacters);   
     // }
 }
