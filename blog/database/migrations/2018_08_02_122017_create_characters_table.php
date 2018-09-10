@@ -17,6 +17,7 @@ class CreateCharactersTable extends Migration
             $table->increments('id');
             $table->string('user');
             $table->string('name')->unique();
+            $table->string('image')->nullable();
             $table->string('gender')->nullable();
             $table->string('hair')->nullable();
             $table->string('eyes')->nullable();

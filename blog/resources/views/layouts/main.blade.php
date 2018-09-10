@@ -28,21 +28,21 @@
           </li>
           <li class="nav-item">
             @if(Auth::user()->hasRole('master'))
-              <a href="{{ url('/play/master') }}"><img src="{{ asset('/img/IconDice.png') }}" alt="Midgard" class="menuIcon"/></a>
+              <a href="{{ url('/play/master') }}"><img src="{{ asset('/img/IconDice.png') }}" alt="Spielen" class="menuIcon"/></a>
             @elseif(Auth::user()->hasRole('player'))
-              <a href="{{ url('/play') }}"><img src="{{ asset('/img/IconDice.png') }}" alt="Midgard" class="menuIcon"/></a>
+              <a href="{{ url('/play') }}"><img src="{{ asset('/img/IconDice.png') }}" alt="Spielen" class="menuIcon"/></a>
             @endif
           </li>
           @if(Auth::user()->hasRole('player'))
           <li class="nav-item">
-            <a href="{{ url('/character') }}"><img src="{{ asset('/img/IconCharacter.png') }}" alt="Midgard" class="menuIcon"/></a>
+            <a href="{{ url('/character') }}"><img src="{{ asset('/img/IconCharacter.png') }}" alt="Charakter" class="menuIcon"/></a>
           </li>
           @endif
           <li class="nav-item">
-            <a href="{{ url('/group') }}"><img src="{{ asset('/img/IconGroup.png') }}" alt="Midgard" class="menuIcon"/></a>
+            <a href="{{ url('/group') }}"><img src="{{ asset('/img/IconGroup.png') }}" alt="Gruppe" class="menuIcon"/></a>
           </li>
           <li class="nav-item">
-            <a href="{{ url('/rules') }}"><img src="{{ asset('/img/IconRules.png') }}" alt="Midgard" class="menuIcon"/></a>
+            <a href="{{ url('/rules') }}"><img src="{{ asset('/img/IconRules.png') }}" alt="Gruppe" class="menuIcon"/></a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto" >

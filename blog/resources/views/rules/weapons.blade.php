@@ -1,6 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
+
+@include('inc.ruleBar')
+
 <div class="container">
     <div class="row">
         <div class="col-md-12 col-md-offset-2">

@@ -1,6 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
+
+@include('inc.characterBar')
+
 <style>
 .bonusList{
   list-style-type:none;

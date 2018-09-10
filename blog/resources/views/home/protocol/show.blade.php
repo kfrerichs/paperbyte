@@ -2,6 +2,8 @@
 
 @section('content')
     
+@include('inc.homeBar')
+
     <a href="/protocol" class="btn btn-default">Go Back</a>
     <h1>{{$protocol->title}}</h1>
     <br><br>

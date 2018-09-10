@@ -1,6 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
+
+@include('inc.characterBar')
+
 <style>
 .characterformular{
   width: 80vw;
@@ -51,12 +54,17 @@
 
 </style>
 
-<form method="post" action="{{url('/character')}}" class="characterformular">
+<form method="post" action="{{url('/character')}}" class="characterformular" enctype="multipart/form-data">
   @csrf
   <div class="characterformular-top">
-    <div class="characterformular-left">
-      <img src="http://placehold.it/200x300" alt="">
-      <input type="file" name="fileToUpload" id="fileToUpload">
+    <div class="characterformular-left" >
+    
+      @if(empty($character->image ))
+        <img src="http://placehold.it/200x300" alt="" width= "200px">
+      @else
+        <img src="{{ asset('images/character' . $character->image) }}" alt="" width= "200px">
+      @endif
+      <input type="file" name="file" id="file">
     </div>
     <div class="characterformular-right">
       <div class="box">

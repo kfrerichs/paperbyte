@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use Hash;
+use App\User;
+use App\Models\Character;
 
 
 class ProfileController extends Controller
@@ -42,5 +44,28 @@ class ProfileController extends Controller
  
         return redirect()->back()->with("success","Password changed successfully !");
  
+    }
+
+    public function getName()
+    {
+        return view('profile.change_name');
+    }
+
+    public function postName(Request $request){
+        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+            // The passwords matches
+            return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+        }
+
+        $newName = $request->get('new-name');
+
+        $user = User::where('name', Auth::user()->name)->first();
+        $user->name = $newName;
+        $user->save();
+
+        $userInCharacter = Character::where('user', Auth::user()->name)->first();
+        $userInCharacter->user = $newName;
+        $userInCharacter->save();
+
     }
 }
