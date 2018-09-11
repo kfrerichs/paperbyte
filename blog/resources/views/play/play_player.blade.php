@@ -8,13 +8,11 @@
   .abilities{
     display:flex;
     flex-wrap:wrap;
-    width: 90vw;
     margin:auto;
     align-items:flex-start;
     justify-content:flex-start;
   }
   .ability{
-    width:150px;
     text-align:center;
     border: 1px solid #4d3328;
     margin:5px;
@@ -24,13 +22,11 @@
   .runes{
     display:flex;
     flex-wrap:wrap;
-    width: 90vw;
     margin:auto;
     align-items:flex-start;
     justify-content:flex-start;
   }
   .rune{
-    width:150px;
     text-align:center;
     border: 1px solid brown;
     margin:5px;
@@ -77,6 +73,9 @@
   .showRune{
     display:none;
   }
+  .hidden{
+    display:none;
+  }
 
 </style>
   <h1>Spielen</h1>
@@ -91,9 +90,6 @@
     <a class="btn btn-default save" onClick="savePoints()">Änderung speichern</a>
     <a class="btn btn-default regenerate" onClick="regenerate()">TP und MP Regenerieren</a>
   </form>
-  <p class="dice open">Offener Wurf:<span id="testDice">0</span></p></br>
-  <p class="dice modified">Unmodifizierter Wurf:<span id="testDiceUnmodified">0</span></p></br>
-  <p>Fertigkeitswurf:<span id="abilitypoint-result">0</span></p></br>
   <label for="withoutOpen">Ohne Open-End</label>
   <input type="checkbox" name="withoutOpen" class="checkbox" id="withoutOpen" onClick="changeDice()"></br>
   <label for="withoutAbility">Ohne Fertigkeit</label>
@@ -111,6 +107,10 @@
     <div class="row abilityresult">
       <span class="label">Bonus:</span>
       <span class="data" id="play_bonus"></span>
+    </div>
+    <div class="row abilityresult">
+    <span class="label" id="play_inventory"></span>
+    <span class="data" id="play_modulo"></span>
     </div>
     <div class="row">
       <span class="label">Würfel:</span>
@@ -154,7 +154,13 @@
       $bonus2 = $ability->attr_2;
       $abilityname = $ability->engl;
     @endphp
-    <div class="ability" id="playAbility-{{$ability->engl}}" onClick="saveAbility('{{$ability->engl}}',{{$character->$bonus1}},{{$character->$bonus2}},{{$character->$abilityname}})">{{$ability->name}}</div>
+    @foreach($inventories as $inventory)
+      @if($inventory->ability_id == $ability->id)
+      <span class="hidden inName-{{$ability->id}}">{{$inventory->item_name}}</span>
+      <span class="hidden inModulo-{{$ability->id}}">{{$inventory->modulo}}</span>
+      @endif
+    @endforeach
+    <div class="ability" id="playAbility-{{$ability->engl}}" onClick="saveAbility('{{$ability->engl}}',{{$character->$bonus1}},{{$character->$bonus2}},{{$character->$abilityname}},{{$ability->id}})">{{$ability->name}}</div>
   @endforeach
   </div>
   <h3>Runen</h3></br>

@@ -1,6 +1,7 @@
 var abilityname;
 var abilitybase = 0;
 var abilitybonus = 0;
+var inventorybonus = 0;
 var openDice = true;
 var woAbility = false;
 var costs;
@@ -63,14 +64,14 @@ function throwDice(){
       if(woAbility){
         $('#play_result').text(open);
       }else{
-        $('#play_result').text(abilitybase+abilitybonus+open);
+        $('#play_result').text(abilitybase+abilitybonus+inventorybonus+open);
       }
     }else{
       $('#play_dice').text(unmodified);
       if(woAbility){
         $('#play_result').text(unmodified);
       }else{
-        $('#play_result').text(abilitybase+abilitybonus+unmodified);
+        $('#play_result').text(abilitybase+abilitybonus+inventorybonus+unmodified);
       }
     }
     costs = $('#runeCosts').val();
@@ -84,50 +85,7 @@ function throwDice(){
     $('.patzer').text('Bitte wähle eine Fertigkeit oder Rune aus.');
   }
 }
-function throwDiceMaster(){
-  //if(selectedRune == true || selectedAbility == true || woAbility == true){
-    var unmodified = throw_W10() + 1;
-    var open = unmodified;
-    if (open <= 1)
-    {
-      open -= throw_W10_open_up();
-      $('.patzer').text('PATZER!');
-    }
-    else if (open >= 10)
-    {
-      open += throw_W10_open_up();
-      $('.patzer').text('Open End!');
-    }
-    else{
-      $('.patzer').text('');
-    }
 
-    if(openDice){
-      $('#play_dice').text(open);
-      if(woAbility){
-        $('#play_result').text(open);
-      }else{
-        $('#play_result').text(abilitybase+abilitybonus+open);
-      }
-    }else{
-      $('#play_dice').text(unmodified);
-      if(woAbility){
-        $('#play_result').text(unmodified);
-      }else{
-        $('#play_result').text(abilitybase+abilitybonus+unmodified);
-      }
-    }
-    // costs = $('#runeCosts').val();
-    // var getMp = $('#mp').val();
-    // if(costs != 0){
-    //   $('#mp').val(getMp-costs);
-    //   // $('#pointForm').submit();
-    // }
-  /*}
-  else{
-    $('.patzer').text('Bitte wähle eine Fertigkeit oder Rune aus.');
-  }*/
-}
 function throw_W10(){
   return Math.floor(Math.random() * 10); 
 }
@@ -154,8 +112,8 @@ function changeDice(){
 function regenerate(){
   var maxHP = $('#max_hp').val();
   var maxMP = $('#max_mp').val();
-  $('#hp').val($('#max_hp').val());
-  $('#mp').val($('#max_mp').val());
+  $('#hp').val(maxHP);
+  $('#mp').val(maxMP);
   $('#pointForm').submit();
 }
 function savePoints(){
@@ -163,13 +121,15 @@ function savePoints(){
 }
 //---------Fertigkeiten Auswahl: /play---------
 
-function saveAbility(name, base1, base2, bonus){
+function saveAbility(name, base1, base2, bonus, id){
   var base= base1 + base2;
   abilitybase = base;
   abilitybonus = bonus;
   $('.ability').removeClass('selectedBox');
   $('.rune').removeClass('selectedBox');
   $('.showRune').hide();
+  $('#play_inventory').hide();
+  $('#play_modulo').hide();
   var element = '#playAbility-'+name;
   $(element).addClass('selectedBox');
   $('.abilityresult').show();
@@ -180,6 +140,13 @@ function saveAbility(name, base1, base2, bonus){
   $('#play_ability').text($(element).text());
   $('#play_base').text(base);
   $('#play_bonus').text(bonus);
+  var invName = '.inName-'+id;
+  var invMod = '.inModulo-'+id;
+  if($(invName).text()){
+    $('#play_inventory').show().text($(invName).text() + ':');
+    $('#play_modulo').show().text($(invMod).text());
+    inventorybonus = parseInt($(invMod).text());
+  }
   selectedAbility = true;
   if(element != '#playAbility-runes_use'){
     $('#runeCosts').val(0);

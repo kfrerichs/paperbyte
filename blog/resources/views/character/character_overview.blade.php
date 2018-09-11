@@ -83,7 +83,7 @@ label{
 textarea{
   margin-bottom: 20px;
 }
-#fileToUpload{
+#file{
   display: none;
 }
 #buttonUpload, .savechanges{
@@ -168,14 +168,13 @@ table{
       <textarea name="family" id="family">{{$character->family}}</textarea> -->
     </div>
   </div>
-  <div class="characterformuluar-bottom">
+  <div class="characterformuluar-bottom" style="margin-right: 20px;">
     <label for="personality">Persönlichkeit</label>
     <textarea name="personality" id="personality">{{$character->personality}}</textarea>
     <label for="looks">Aussehen</label>
-  <div class="characterformuluar-bottom" style="margin-right: 20px;">
-    <label for="family">Familie</label>
-    <textarea name="family" id="family">{{$character->family}}</textarea><label for="looks">Aussehen</label>
     <textarea name="looks" id="looks">{{$character->looks}}</textarea>
+    <label for="family">Familie</label>
+    <textarea name="family" id="family">{{$character->family}}</textarea>
     <label for="background">Hintergrund</label>
     <textarea name="background" id="background" >{{$character->background}}</textarea> 
   </div>
