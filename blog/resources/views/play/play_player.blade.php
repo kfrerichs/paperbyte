@@ -8,13 +8,11 @@
   .abilities{
     display:flex;
     flex-wrap:wrap;
-    width: 90vw;
     margin:auto;
     align-items:flex-start;
     justify-content:flex-start;
   }
   .ability{
-    width:150px;
     text-align:center;
     border: 1px solid #4d3328;
     margin:5px;
@@ -24,13 +22,11 @@
   .runes{
     display:flex;
     flex-wrap:wrap;
-    width: 90vw;
     margin:auto;
     align-items:flex-start;
     justify-content:flex-start;
   }
   .rune{
-    width:150px;
     text-align:center;
     border: 1px solid brown;
     margin:5px;
@@ -91,9 +87,7 @@
     <a class="btn btn-default save" onClick="savePoints()">Änderung speichern</a>
     <a class="btn btn-default regenerate" onClick="regenerate()">TP und MP Regenerieren</a>
   </form>
-  <p class="dice open">Offener Wurf:<span id="testDice">0</span></p></br>
-  <p class="dice modified">Unmodifizierter Wurf:<span id="testDiceUnmodified">0</span></p></br>
-  <p>Fertigkeitswurf:<span id="abilitypoint-result">0</span></p></br>
+  
   <label for="withoutOpen">Ohne Open-End</label>
   <input type="checkbox" name="withoutOpen" class="checkbox" id="withoutOpen" onClick="changeDice()"></br>
   <label for="withoutAbility">Ohne Fertigkeit</label>

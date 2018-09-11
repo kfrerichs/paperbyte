@@ -47,11 +47,6 @@ class PlayController extends Controller
     {
       return redirect()->back();
     }
-    
-    return view('play.play_master');
-  }
- 
-  public function getPlayMaster(){
     $character = Character::where('user', Auth::user()->name)->first();
     $jobs = Job::orderBy('name','asc')->get();
     $weapons = Weapon::orderBy('name','asc')->get();

@@ -83,7 +83,7 @@ label{
 textarea{
   margin-bottom: 20px;
 }
-#fileToUpload{
+#file{
   display: none;
 }
 #buttonUpload, .savechanges{
@@ -116,9 +116,9 @@ table{
     <div class="characterformular-left" >
     
       @if(empty($character->image ))
-        <img src="http://placehold.it/200x300" alt="" width= "200px">
+        <img id="placeholder" src="http://placehold.it/200x300" alt="" width= "200px">
       @else
-        <img src="{{ asset('images/character' . $character->image) }}" alt="" width= "200px">
+        <img id="placeholder" src="{{ asset('images/character' . $character->image) }}" alt="" width= "200px">
       @endif
       <input type="file" name="file" id="file">
       <input type="button" id="buttonUpload" value="Profilbild wählen" onclick="document.getElementById('file').click();"/>
@@ -168,14 +168,13 @@ table{
       <textarea name="family" id="family">{{$character->family}}</textarea> -->
     </div>
   </div>
-  <div class="characterformuluar-bottom">
+  <div class="characterformuluar-bottom" style="margin-right: 20px;">
     <label for="personality">Persönlichkeit</label>
     <textarea name="personality" id="personality">{{$character->personality}}</textarea>
     <label for="looks">Aussehen</label>
-  <div class="characterformuluar-bottom" style="margin-right: 20px;">
-    <label for="family">Familie</label>
-    <textarea name="family" id="family">{{$character->family}}</textarea><label for="looks">Aussehen</label>
     <textarea name="looks" id="looks">{{$character->looks}}</textarea>
+    <label for="family">Familie</label>
+    <textarea name="family" id="family">{{$character->family}}</textarea>
     <label for="background">Hintergrund</label>
     <textarea name="background" id="background" >{{$character->background}}</textarea> 
   </div>

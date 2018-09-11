@@ -65,7 +65,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/character/inventory/delete/{id?}', 'CharacterController@getDelete'); //Inventar
 
     Route::get('/group', 'GroupController@getOverview'); //Gruppenübersicht
-    Route::get('/group/detail', 'GroupController@getDetail'); //Gruppenmitglied Detailansicht
+    Route::get('/group/detail/{id?}', 'GroupController@getDetail'); //Gruppenmitglied Detailansicht
 
     Route::get('/play', 'PlayController@getPlay'); //Spielseite (nur für Spieler sichtbar)
     Route::post('/play', 'PlayController@postPlay'); //Spielseite (nur für Spieler sichtbar)

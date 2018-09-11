@@ -10,14 +10,11 @@
                     @php
                         $charactername = $member->charactername;
                     @endphp
-                    @foreach($allCharacters as $character)
-                        @if($charactername == $character->name)
-                        <a href="{{ url('group/detail') }}">
+                    @foreach($allCharacters as $allCharacter)
+                        @if($charactername == $allCharacter->name && $charactername != $character->name)
+                        <a href="{{ url('group/detail/'.$allCharacter->id) }}">
                             <div class="box">
-                                <span>{{$character->name}}</span>
-                                <!-- <span>{{$character->gender}}</span>
-                                <span>{{$character->hair}}</span>
-                                <span>{{$character->eyes}}</span> -->
+                                <span>{{$allCharacter->name}}</span>
                             </div>
                         </a>
                         @endif
