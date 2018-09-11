@@ -2,43 +2,52 @@
 
 @section('content')
 <style>
+  .checkbox{
+    cursor:pointer;
+  }
   .abilities{
     display:flex;
     flex-wrap:wrap;
-    width: 90vw;
     margin:auto;
     align-items:flex-start;
     justify-content:flex-start;
   }
   .ability{
-    width:150px;
     text-align:center;
-    border: 1px solid brown;
+    border: 1px solid #4d3328;
     margin:5px;
     padding:10px;
+    cursor:pointer;
   }
   .runes{
     display:flex;
     flex-wrap:wrap;
-    width: 90vw;
     margin:auto;
     align-items:flex-start;
     justify-content:flex-start;
   }
   .rune{
-    width:150px;
     text-align:center;
     border: 1px solid brown;
     margin:5px;
     padding:10px;
+    cursor:pointer;
   }
   .selectedBox{
     background-color:brown;
     color:white;
   }
+  .selectedBox, .ability:hover{
+    background-color: #4d3328;
+    color: #ffffff;
+  }
   .abilityresult{
     display:none;
   }
+  h1{
+    padding-bottom: 20px;
+  }
+
   .effects{
     display:flex;
     width: 500px;
@@ -65,11 +74,33 @@
     display:none;
   }
 </style>
-   <label for="withoutOpen">Ohne Open-End</label>
+  <form method="post" action="{{url('/play/master')}}" id="enemy">
+    @csrf
+    <select name="chooseEnemy" id="chooseEnemy" class="chooseEnemy">
+      @foreach($enemies as $enemy)
+        <option value="{{$enemy->id}}" class="enemy" <?php if($enemy->id == $chosenEnemy->id) echo ' selected="selected"';?>>{{$enemy->name}}</option>
+      @endforeach
+    </select>
+    <button type='submit' class="selectEnemy">Gegner auswählen</button>
+  </form>
+    </br>
+  <form method="post" action="{{url('/play/master/points')}}" id="pointForm">
+    @csrf
+    <label for="hp">Trefferpunkte:</label>
+    <input type="hidden" name="max_hp" id="max_hp" value="{{$chosenEnemy->max_hp}}">
+    <input type="number" name="hp" id="hp" value="{{old('hp')?old('hp'):$chosenEnemy->hp}}">
+    <label for="mp">Magiepunkte:</label>
+    <input type="hidden" name="max_mp" id="max_mp" value="{{$chosenEnemy->max_mp}}">
+    <input type="number" name="mp" id="mp" value="{{old('mp')?old('mp'):$chosenEnemy->mp}}"></br>
+    <a class="btn btn-default save" onClick="savePoints()">Änderung speichern</a>
+    <a class="btn btn-default regenerate" onClick="regenerate()">TP und MP Regenerieren</a>
+  </form>
+    </br>
+  <label for="withoutOpen">Ohne Open-End</label>
   <input type="checkbox" name="withoutOpen" id="withoutOpen" onClick="changeDice()"></br>
   <label for="withoutAbility">Ohne Fertigkeit</label>
   <input type="checkbox" name="withoutAbility" id="withoutAbility" onClick="deleteSelection()"></br>
-  <a class="btn btn-info dice" onClick="throwDiceMaster()">Würfeln</a>
+  <a class="btn btn-info dice" onClick="throwDice()">Würfeln</a>
   <div class="output">
     <div class="row abilityresult">
       <span class="label">Fertigkeit:</span>
@@ -125,7 +156,8 @@
       $bonus2 = $ability->attr_2;
       $abilityname = $ability->engl;
     @endphp
-    <div class="ability" id="playAbility-{{$ability->engl}}" >{{$ability->name}}</div>
+   
+    <div class="ability" id="playAbility-{{$ability->engl}}" onClick="saveAbility('{{$ability->engl}}',{{$chosenEnemy->$bonus1}},{{$chosenEnemy->$bonus2}},{{$chosenEnemy->$abilityname}})">{{$ability->name}}</div>
   @endforeach
   </div>
   <h3>Runen</h3></br>
@@ -134,7 +166,7 @@
     @php 
      
     @endphp
-    <div class="rune" id="playRune-{{$rune->name}}" >{{$rune->name}}</div>
+    <div class="rune" id="playRune-{{$rune->name}}" onClick="saveRune('{{$rune->name}}',{{$chosenEnemy->runes_use}},{{$chosenEnemy->sd}},{{$chosenEnemy->ge}})">{{$rune->name}}</div>
   @endforeach
   </div>
 

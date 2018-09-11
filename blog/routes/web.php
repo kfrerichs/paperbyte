@@ -71,6 +71,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/play', 'PlayController@postPlay'); //Spielseite (nur für Spieler sichtbar)
     Route::get('/play/master', 'PlayController@getPlayMaster'); //Spielseite (nur für Meister sichtbar)
     Route::post('/play/master', 'PlayController@postPlayMaster'); //Spielseite (nur für Meister sichtbar)
+    Route::post('/play/master/points', 'PlayController@postPlayMasterPoints'); //Spielseite (nur für Meister sichtbar)
 
     Route::get('/profile/password', 'ProfileController@getPass'); //Passwort ändern
     Route::post('/profile/password', 'ProfileController@postPass')->name('changePassword'); //Passwort ändern
