@@ -2,12 +2,12 @@
     <ul class="subNavUl">
         <li class="subNavLi">
             <a href="{{ url('/character') }}"> 
-                Character 
+                Charakter 
             </a>   
         </li>
         <li class="subNavLi"> 
             <a href="{{ url('/character/abilities') }}"> 
-                Fähigkeiten 
+                Fertigkeiten 
             </a>
         </li>
         <li class="subNavLi"> 

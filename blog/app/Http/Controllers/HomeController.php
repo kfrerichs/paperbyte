@@ -13,7 +13,6 @@ use Illuminate\Routing\Redirector;
 use Session;
 use Validator;
 use Auth;
-use Cookie;
 use App\Role;
 use App\Models\Npc;
 use App\Models\Place;
@@ -36,17 +35,17 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    public function index()
-    {
-        // public function index(Request $request)
-        // {
-        //     $request->user()->authorizeRoles(['employee', 'manager']);
-        // @if(Auth::user()->hasRole(‘manager’)) 
+    // public function index()
+    // {
+    //     // public function index(Request $request)
+    //     // {
+    //     //     $request->user()->authorizeRoles(['employee', 'manager']);
+    //     // @if(Auth::user()->hasRole(‘manager’)) 
 
-       // $cookieGroup = request()->cookie('group');
-        // $cookieCharacter = request()->cookie('character');
-        return view('home')->with('cookieGroup',$cookieGroup)->with('cookieCharacter', $cookieCharacter);
-    }
+    //    // $cookieGroup = request()->cookie('group');
+    //     // $cookieCharacter = request()->cookie('character');
+    //     return view('home')->with('cookieGroup',$cookieGroup)->with('cookieCharacter', $cookieCharacter);
+    // }
 
     // public function getProtocol(){
     //     $protocols = Protocol::orderBy('created_at','asc')->paginate(10);
@@ -66,6 +65,12 @@ class HomeController extends Controller
 
     public function getCreateGroup()
     {
+        $groupmember = Group::where('username', Auth::user()->name)->get();
+
+        if($groupmember->count() > 0){
+            return redirect()->back();
+        }
+
         $errorMessageNew ='';
         $value = Session::get('error');
 
@@ -80,6 +85,12 @@ class HomeController extends Controller
 
     public function getJoinGroup()
     {
+        $groupmember = Group::where('username', Auth::user()->name)->get();
+
+        if($groupmember->count() > 0){
+            return redirect()->back();
+        }
+        
         $errorMessageJoin ='';
         $value = Session::get('error');
 
@@ -92,7 +103,7 @@ class HomeController extends Controller
     }
 
     public function postCreateGroupJoin(Request $request)
-    {
+    {   
         $groupName = Request::input('name');
         $groupNameExist = Group::where('name','LIKE', '%'.$groupName.'%')->get();
 
@@ -102,7 +113,7 @@ class HomeController extends Controller
 
             if ($validator->fails())
             {
-                return redirect('creategroup')->withErrors($validator)->withInput();
+                return redirect('joingroup')->withErrors($validator)->withInput();
             }
             else
             {
@@ -117,10 +128,7 @@ class HomeController extends Controller
                 $group->role = 'player';
                 $group->save();
 
-                Cookie::queue('group', $groupName, 43200);
-
                 return redirect('character/name');
-                // return view('character');
             }
         }
         else
@@ -156,11 +164,7 @@ class HomeController extends Controller
                 $group->role = 'master';
                 $group->save();
 
-                Cookie::queue('group', $groupName, 43200);
-
                 return redirect('home');
-                // return view('character');
-                echo "There is data".$groupName['newName'];
             }
         }
         else

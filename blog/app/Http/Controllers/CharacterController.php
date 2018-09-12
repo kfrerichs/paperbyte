@@ -109,6 +109,21 @@ class CharacterController extends Controller
     
   }
   public function postName(){
+
+    $validator = Validator::make(Request::all(), Group::$rules);
+
+    if ($validator->fails())
+    {
+        return redirect('character/name')->withErrors($validator)->withInput();
+    }
+
+    $characterWithSameName = Character::where('name', Request::input('name'))->get();
+    $errorMessage = "Name ist bereits vergeben";
+    if($characterWithSameName->count() > 0)
+    {
+      return redirect('character/name')->withError($errorMessage);
+    }
+    
     $character = new Character;
     $character->user = Auth::user()->name;
     $character->name = Request::input('name');
@@ -118,6 +133,7 @@ class CharacterController extends Controller
     $group->save();
     return redirect('character');
   }
+
   public function getNew($name=''){
     if(Auth::user()->hasRole('master')) 
     {
@@ -134,6 +150,7 @@ class CharacterController extends Controller
       return redirect('character');
     }
   }
+
   public function postNew(){
     $character = Character::where('user', Auth::user()->name)->first();
     $character->gender= Request::input('gender');

@@ -14,12 +14,8 @@ use App\User;
 */
 
 Route::get('/', function () {
-    return view('auth/login');
+    return redirect('home');
 });
-
-// Auth::user()->authorizeRoles([‘manager’])
-// Route::group(['middleware' => ['auth', 'role:admin|user']], function () {
-    //@if(Auth::user()->hasRole('master'))
 
 Route::group(['middleware' => ['auth']], function(){
 
@@ -28,21 +24,13 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/creategroup/join', 'HomeController@postCreateGroupJoin');
     Route::post('/creategroup/new', 'HomeController@postCreateGroupNew');
 
-    // Route::get('/home', 'HomeController@getProtocol'); //Protokollseite
-    // Route::post('/home', 'HomeController@postProtocol'); //Protokollseite
-
     Route::resource('/home', 'ProtocolController', [        //Protokollseite
         'except' => ['create', 'show']
     ]);
-
-    //Route::get('/home/adventure', 'HomeController@getAdventure'); //Abenteuerseite (nur für Meister sichtbar)
-    //Route::post('/home/adventure', 'HomeController@postAdventure'); //Abenteuerseite (nur für Meister sichtbar)
-
     
     Route::resource('home/adventure', 'AdventureController',[       //Abenteuerseite (nur für Meister sichtbar)
         'except' => ['create', 'show']
     ]);
-    
 
     Route::get('/home/npcs', 'HomeController@getNpc'); //NPC Übersicht (nur von Meister bearbeitbar)
 
@@ -86,10 +74,4 @@ Route::group(['middleware' => ['auth']], function(){
 
 });
 
-//pages visible for all
-//pages visible for players
-//pages visible for master
-
 Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');

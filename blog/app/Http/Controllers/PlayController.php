@@ -42,16 +42,12 @@ class PlayController extends Controller
   }
 
   public function getPlayMaster(){
-    //only Master
+    
     if(Auth::user()->hasRole('player')) 
     {
       return redirect()->back();
     }
-    
-    return view('play.play_master');
-  }
- 
-  public function getPlayMaster(){
+
     $character = Character::where('user', Auth::user()->name)->first();
     $jobs = Job::orderBy('name','asc')->get();
     $weapons = Weapon::orderBy('name','asc')->get();
@@ -60,6 +56,7 @@ class PlayController extends Controller
     $runes = Rune::orderBy('name','asc')->get();
     return view('play.play_master')->with('character', $character)->with('jobs', $jobs)->with('armours', $armours)->with('weapons', $weapons)->with('abilities',$abilities)->with('runes',$runes);
   }
+
   public function postPlayMaster(){
     $character = Character::where('user', Auth::user()->name)->first();
     $character->mp = Request::input('mp');

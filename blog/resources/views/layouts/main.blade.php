@@ -55,8 +55,8 @@
             </form>
           </li>
           <li class="nav-item dropdown">
-              <a id="navbarDropdown" style="color: #4d3328; font-size: 20pt; margin-top:50%;" class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                <span class="caret"></span>
+              <a id="navbarDropdown"  style="color: #4d3328; font-size: 20pt; margin-top:50%;" class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <span  class="caret"></span>
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
