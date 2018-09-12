@@ -68,7 +68,7 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                       <ul>
                         <li class="navDropdown">
-                          <a href="{{ url('/profile/name') }}"> Profilname ändern</a>
+                          <a href="{{ url('/profile/name') }}">Profilname ändern</a>
                         </li>
                         <li class="navDropdown">
                           <a href="{{ url('/profile/password') }}">Passwort ändern</a>

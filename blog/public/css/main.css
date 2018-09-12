@@ -85,6 +85,7 @@ hr{
     background-color: #4d3328;
     color: #ffffff!important;
     border: none;
+    font-family: 'EagleLake', Helvetica, sans-serif;
 }
 .btn-info{
     margin-top: 20px;
@@ -175,6 +176,9 @@ h1, h2, h3, h4{
 .form-control, label, textarea, input, select{
     color: #4d3328;
     font-family: 'EagleLake', Helvetica, sans-serif;
+}
+.form-control{
+    border: none;
 }
 .container-columns{
     width: auto;
@@ -303,8 +307,23 @@ h1, h2, h3, h4{
 }
 
 /* Playpage */
-.checkbox{
+  .checkbox{
     cursor:pointer;
+    width: auto;
+  }
+  .checkLabel{
+    width: 150px;
+  } 
+  .checkContainer{
+      display: flex;
+  }
+  .inputWidth{
+    width: 50px;
+    margin-right: 50px;
+    margin-bottom: 20px;
+  }
+  .save, .regenerate{
+    margin-right: 50px;
   }
   .abilities{
     display:flex;
@@ -333,6 +352,9 @@ h1, h2, h3, h4{
     margin:5px;
     padding:10px;
     cursor:pointer;
+  }
+  .fixFlex{
+      display: block;
   }
   .selectedBox{
     background-color:brown;
