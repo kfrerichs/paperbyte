@@ -26,7 +26,7 @@
         <a class="navbar-brand" href="{{ url('/home') }}"><img src="{{ asset('/img/Banner.png') }}" alt="Midgard"/></a>
 
         <!-- Collapse button -->
-        <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
+        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
             aria-expanded="false" aria-label="Toggle navigation"><span><i class="fa fa-bars fa-1x"></i></span></button>
 
         <!-- Collapsible content -->
@@ -52,7 +52,7 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{ url('/rules') }}"><img src="{{ asset('/img/IconRules.png') }}" alt="Regelwerk" class="menuIcon"/><span class="menuBurgerText">Regelwerk</span></a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item desktop">
                   <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     <img src="{{ asset('/img/IconLogout.png') }}" alt="Logout" class="menuIcon"/><span class="menuBurgerText">Profil</span>
                   </a>
@@ -60,7 +60,13 @@
                       @csrf
                   </form>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item mobile">
+                  <a href="{{ url('/profile/name') }}"><span class="menuBurgerText">Profilname ändern</span></a>
+                </li>
+                <li class="nav-item mobile">
+                  <a href="{{ url('/profile/password') }}"><span class="menuBurgerText">Passwort ändern</span></a>
+                </li>
+                <li class="nav-item desktop dropdown">
                     <a id="navbarDropdown" class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                       <span class="caret"></span>
                     </a>

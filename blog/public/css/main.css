@@ -46,6 +46,22 @@ body{
     height: 100%;
     width: auto;
 }
+@media screen and (min-width:993px) {
+    .nav-item.desktop{
+        display:block;
+    }
+    .nav-item.mobile{
+        display:none;
+    }
+}
+@media screen and (max-width:992px) {
+    .nav-item.desktop{
+        display:none;
+    }
+    .nav-item.mobile{
+        display:block;
+    }
+}
 .menuIcon{
     height: 100px;
 }
