@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Character;
 use App\Models\Group;
+use App\Models\Job;
 use Auth;
 
 class GroupController extends Controller
@@ -17,6 +18,7 @@ class GroupController extends Controller
     }
     public function getDetail($id=null){
         $character = Character::find($id);
-        return view('group.group_character')->with('character', $character);   
+        $job = Job::find($id);
+        return view('group.group_character')->with('character', $character)->with('job', $job);   
     }
 }

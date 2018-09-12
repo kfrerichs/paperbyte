@@ -24,7 +24,7 @@ class ProtocolController extends Controller
      */
     public function index()
     {
-        $protocols = Protocol::orderBy('created_at','asc') /*->paginate(10)*/;        //Paginate sinnvoll? -> Seite soll ja immer zum aktuellen scrollen aber lädt schneller
+        $protocols = Protocol::orderBy('created_at','asc') ->paginate(100);        //Paginate sinnvoll? -> Seite soll ja immer zum aktuellen scrollen aber lädt schneller
         return view('home.protocol.index')->with('protocols', $protocols);   
     }
 

@@ -13,7 +13,7 @@
                     @foreach($allCharacters as $allCharacter)
                         @if($charactername == $allCharacter->name && $charactername != $character->name)
                         <a href="{{ url('group/detail/'.$allCharacter->id) }}">
-                            <div class="box">
+                            <div class="group-box borderline">
                                 <span>{{$allCharacter->name}}</span>
                             </div>
                         </a>

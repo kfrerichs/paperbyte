@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
-// use App\Models\Job;
-// use App\Models\Armour;
-// use App\Models\Weapon;
+use App\Models\Job;
+use App\Models\Armour;
+use App\Models\Weapon;
 use App\Models\Ability;
 use App\Models\Inventory;
 use App\Models\Rune;
@@ -26,9 +26,9 @@ class PlayController extends Controller
     }
     
     $character = Character::where('user', Auth::user()->name)->first();
-    // $jobs = Job::orderBy('name','asc')->get();
-    // $weapons = Weapon::orderBy('name','asc')->get();
-    // $armours = Armour::orderBy('name','asc')->get();
+    $jobs = Job::orderBy('name','asc')->get();
+    $weapons = Weapon::orderBy('name','asc')->get();
+    $armours = Armour::orderBy('name','asc')->get();
     $abilities = Ability::orderBy('name','asc')->get();
     $runes = Rune::orderBy('name','asc')->get();
     $inventories = Inventory::where('character_id',$character->id)->get();

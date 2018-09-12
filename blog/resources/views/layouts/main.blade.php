@@ -19,58 +19,64 @@
   <body>
   @guest
   @else
-
     <div class="container-fluid">
       <nav class="navbar navbar-expand-lg">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a href="{{ url('/home') }}"><img src="{{ asset('/img/Banner.png') }}" alt="Midgard" class="menuIcon"/></a>
-          </li>
-          <li class="nav-item">
-            @if(Auth::user()->hasRole('master'))
-              <a href="{{ url('/play/master') }}"><img src="{{ asset('/img/IconDice.png') }}" alt="Spielen" class="menuIcon"/></a>
-            @elseif(Auth::user()->hasRole('player'))
-              <a href="{{ url('/play') }}"><img src="{{ asset('/img/IconDice.png') }}" alt="Spielen" class="menuIcon"/></a>
-            @endif
-          </li>
-          @if(Auth::user()->hasRole('player'))
-          <li class="nav-item">
-            <a href="{{ url('/character') }}"><img src="{{ asset('/img/IconCharacter.png') }}" alt="Charakter" class="menuIcon"/></a>
-          </li>
-          @endif
-          <li class="nav-item">
-            <a href="{{ url('/group') }}"><img src="{{ asset('/img/IconGroup.png') }}" alt="Gruppe" class="menuIcon"/></a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ url('/rules') }}"><img src="{{ asset('/img/IconRules.png') }}" alt="Gruppe" class="menuIcon"/></a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto" >
-          <li>
-            <a  href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-              <img src="{{ asset('/img/IconLogout.png') }}" alt="Midgard" class="menuIcon"/>
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                @csrf
-            </form>
-          </li>
-          <li class="nav-item dropdown">
-              <a id="navbarDropdown" style="color: #4d3328; font-size: 20pt; margin-top:50%;" class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                <span class="caret"></span>
-              </a>
 
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <ul>
-                  <li class="navDropdown">
-                    <a href="{{ url('/profile/name') }}"> Profilname ändern</a>
-                  </li>
-                  <li class="navDropdown">
-                    <a href="{{ url('/profile/password') }}">Passwort ändern</a>
-                  </li>
-                  <ul>
-              </div>
-          </li>
-        </ul>
+        <!-- Navbar brand -->
+        <a class="navbar-brand" href="{{ url('/home') }}"><img src="{{ asset('/img/Banner.png') }}" alt="Midgard"/></a>
+
+        <!-- Collapse button -->
+        <button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
+            aria-expanded="false" aria-label="Toggle navigation"><span><i class="fa fa-bars fa-1x"></i></span></button>
+
+        <!-- Collapsible content -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent1">
+
+            <!-- Links -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @if(Auth::user()->hasRole('master'))
+                      <a class="nav-link" href="{{ url('/play/master') }}"><img src="{{ asset('/img/IconDice.png') }}" alt="Spielen" class="menuIcon"/><span class="menuBurgerText">Spielen</span></a>
+                    @elseif(Auth::user()->hasRole('player'))
+                      <a class="nav-link" href="{{ url('/play') }}"><img src="{{ asset('/img/IconDice.png') }}" alt="Spielen" class="menuIcon"/><span class="menuBurgerText">Spielen</span></a>
+                    @endif
+                </li>
+                @if(Auth::user()->hasRole('player'))
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/character') }}"><img src="{{ asset('/img/IconCharacter.png') }}" alt="Charakter" class="menuIcon"/><span class="menuBurgerText">Charakter</span></a>
+                </li>
+                @endif
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/group') }}"><img src="{{ asset('/img/IconGroup.png') }}" alt="Gruppe" class="menuIcon"/><span class="menuBurgerText">Gruppe</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ url('/rules') }}"><img src="{{ asset('/img/IconRules.png') }}" alt="Regelwerk" class="menuIcon"/><span class="menuBurgerText">Regelwerk</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    <img src="{{ asset('/img/IconLogout.png') }}" alt="Logout" class="menuIcon"/><span class="menuBurgerText">Profil</span>
+                  </a>
+                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                      @csrf
+                  </form>
+                </li>
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle " role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                      <span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                      <ul>
+                        <li class="navDropdown">
+                          <a href="{{ url('/profile/name') }}"> Profilname ändern</a>
+                        </li>
+                        <li class="navDropdown">
+                          <a href="{{ url('/profile/password') }}">Passwort ändern</a>
+                        </li>
+                        <ul>
+                    </div>
+                </li>
+            </ul>
       </nav>
     </div>
     @endguest
