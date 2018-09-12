@@ -36,7 +36,11 @@
                             </tr>
                             <tr>
                                 <td>Treffpunkt:</td>
-                                <td>{{$npc->meetingpoint_id}}</td>
+                                @foreach($places as $place)
+                                    @if($place->id==$npc->meetingpoint_id)    
+                                        <td>{{$place->name}}</td>
+                                    @endif 
+                                @endforeach
                             </tr>
                             <tr>
                                 <td>Hintergrund</td>

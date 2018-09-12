@@ -177,7 +177,7 @@ class HomeController extends Controller
     public function getNpc(){
         $npcs = Npc::all();
         $places = Place::all();
-        return view('home.npcs')->with('npcs', $npcs);   
+        return view('home.npcs')->with('npcs', $npcs)->with('places', $places);   
     }
     public function getPlaces(){
         $places = Place::all();

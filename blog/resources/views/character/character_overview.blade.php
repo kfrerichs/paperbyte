@@ -4,116 +4,15 @@
 
 @include('inc.characterBar')
 
-<style>
-.characterformular{
-  width: 80vw;
-  margin:auto;
-}
-.characterformular textarea{
-  height: 100px;
-  width: 100%;
-}
-.characterformular-top{
-  display:flex;
-}
-.characterformular-left{
-  display:flex;
-  flex-direction:column;
-}
-.characterformular-left input{
-  margin-top: 20px;
-}
-.characterformular-right{
-  display:flex;
-  flex-flow: row wrap;
-  width: 100%;
-  justify-content: space-between;
-}
-.characterformular-right textarea{
-  width: 100%;
-}
-.box{
-  display:flex;
-  flex-direction:column;
-  width: 45%;
-  margin-bottom: 20px;
-}
-.box .input-row{
-  padding: 10px 0;
-  margin-bottom: 20px;
-}
-.box .input-row label{
-  width: 100px;
-  text-align: left;
-}
-.gear .input-row select{
-  margin-bottom: 20px;
-  width: 100%
-}
-.gear .input-row label{
-  width: 200px;
-}
-.form-control, label, textarea, input, select{
-  width: 100%;
-}
-label{
-  display: block;
-  width: 50%;
-  float:left;
-}
-.savechanges{
-  display:block;
-  margin-left: auto;
-  /* margin-right: 10vw; */
-  margin-right: 20px;
-  margin-top: 20px;
-  margin-bottom: 100px;
-  font-family: 'EagleLake', Helvetica, sans-serif;
-}
-#placeholder{
-  width: 200px;
-  margin-right: 20px;
-  margin-top: 20px;
-}
-textarea{
-  margin-bottom: 20px;
-}
-#file{
-  display: none;
-}
-#buttonUpload, .savechanges{
-  width: 200px;
-  font-size: 12px;
-  background-color: #4d3328;
-  border: none;
-  color: #ffffff;
-  padding: 5px;
-}
-#buttonUpload:hover, .savechanges:hover{
-  background-color: #32cdcd;
-}
-table{
-  margin-top: 20px;
-  font-family: 'EagleLake', Helvetica, sans-serif;
-  border-collapse: separate;
-  border-spacing: 10px 20px;
-}
-.gear{
-  margin-top: 20px;
-  margin-right: 20px;
-}
-
-</style>
-
 <form method="post" action="{{url('/character')}}" class="characterformular" enctype="multipart/form-data">
   @csrf
   <div class="characterformular-top">
     <div class="characterformular-left" >
       <!-- show/save character image or show placeholde -->
       @if(empty($character->image ))
-        <img src="http://placehold.it/200x300" alt="" width= "200px">
+        <img id="placeholder" src="http://placehold.it/200x300" alt="" width= "200px">
       @else
-        <img src="{{ asset('images/character' . $character->image) }}" alt="" width= "200px">
+        <img id="placeholder" src="{{ asset('images/character' . $character->image) }}" alt="" width= "200px">
       @endif
       <input type="file" name="file" id="file">
       <input type="button" id="buttonUpload" value="Profilbild wählen" onclick="document.getElementById('file').click();"/>
