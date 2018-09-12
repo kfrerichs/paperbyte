@@ -17,12 +17,13 @@ use Illuminate\Support\Facades\Input;
 class CharacterController extends Controller
 {
   public function getOverview(){
-
+    // fallback -> master doens't have a character so he cant't open this page
     if(Auth::user()->hasRole('master')) 
     {
       return redirect()->back();
     }
-
+    // *** get character data from logged in user, the job db, the weapon db and armour db.
+    // *** return view with variables/arrays
     $character = Character::where('user', Auth::user()->name)->first();
     $jobs = Job::orderBy('name','asc')->get();
     $weapons = Weapon::orderBy('name','asc')->get();
@@ -31,15 +32,10 @@ class CharacterController extends Controller
   }
 
   public function postOverview(){
+    // *** get character data of logged in user
     $character = Character::where('user', Auth::user()->name)->first();
-    // $validator = Validator::make(Request::all(),array('name' => 'required|min:2'));
-    
-    //   if ($validator->fails()){
-      //     return redirect('manufacturers/edit')->withErrors($validator)->withInput();
-      //   }
-      // $character = new Character();
-    // $character->name= Request::input('name');
 
+    // *** save uploaded image to database with userid so images with the same name don't get overwritten
     if(Input::hasFile('file')){
       $file = Input::file('file');
       $userId = (string)Auth::user()->id;
@@ -48,7 +44,7 @@ class CharacterController extends Controller
       $file->move('images/character', $filename);
       $character->image = $filename;
     }
-
+    // *** save input data to database
     $character->gender= Request::input('gender');
     $character->job_id= Request::input('job_id');
     $character->age= Request::input('age');
@@ -79,6 +75,9 @@ class CharacterController extends Controller
     $character->ch_rank= Request::input('ch_rank');
     $character->ch= Request::input('ch');
 
+    // *** calculate and set max_mp and max_hp through attribute-values. (10 x rand(1,10) to imitate 10 throws of tensided dice )
+    // *** at initialising a character the current mp and hp are the same as max
+    // *** to prevent changing of max-values through random numbers it is only set when the character values are 0 -> i.e. initialised character
     $st= $character->st_rank;
     $sd= $character->sd_rank;
     $ge= $character->ge_rank;
@@ -93,11 +92,12 @@ class CharacterController extends Controller
     
   }
   public function getName(){
+    // *** fallback -> master doesn't get a character
     if(Auth::user()->hasRole('master')) 
     {
       return redirect()->back();
     }
-
+    // only open if the user doesn't have a character yet. Otherwise redirect to character page
     $character = Character::where('user', Auth::user()->name)->first();
     if($character == ''){
       return view('character.character_name');
@@ -105,10 +105,12 @@ class CharacterController extends Controller
     else{
       return redirect('character');
     }
-
+    
     
   }
   public function postName(){
+    // *** to get a character the name must be unique. if the name of the character is unique the user gets redirected to character overview page to save his data.
+    // *** the charactername gets also written into group db
     $character = new Character;
     $character->user = Auth::user()->name;
     $character->name = Request::input('name');
@@ -118,74 +120,24 @@ class CharacterController extends Controller
     $group->save();
     return redirect('character');
   }
-  public function getNew($name=''){
-    if(Auth::user()->hasRole('master')) 
-    {
-      return redirect()->back();
-    }
-    $character = Character::where('user', Auth::user()->name)->first();
-    $jobs = Job::orderBy('name','asc')->get();
-    $weapons = Weapon::orderBy('name','asc')->get();
-    $armours = Armour::orderBy('name','asc')->get();
-    if($character == ''){
-      return view('character.character_initialize')->with('character', $character)->with('jobs', $jobs)->with('armours', $armours)->with('weapons', $weapons);
-    }
-    else{
-      return redirect('character');
-    }
-  }
-  public function postNew(){
-    $character = Character::where('user', Auth::user()->name)->first();
-    $character->gender= Request::input('gender');
-    $character->job_id= Request::input('job_id');
-    $character->age= Request::input('age');
-    $character->hair= Request::input('hair');
-    $character->eyes= Request::input('eyes');
-    $character->size= Request::input('size');
-    $character->weight= Request::input('weight');
-    $character->family= Request::input('family');
-    $character->looks= Request::input('looks');
-    $character->background= Request::input('background');
-    $character->weapon_1_id= Request::input('weapon_1_id');
-    $character->weapon_2_id= Request::input('weapon_2_id');
-    $character->armour_id= Request::input('armour_id');
-    $character->li_rank= Request::input('li_rank');
-    $character->li= Request::input('li');
-    $character->st_rank= Request::input('st_rank');
-    $character->st= Request::input('st');
-    $character->in_rank= Request::input('in_rank');
-    $character->in= Request::input('in');
-    $character->re_rank= Request::input('re_rank');
-    $character->re= Request::input('re');
-    $character->ge_rank= Request::input('ge_rank');
-    $character->ge= Request::input('ge');
-    $character->lo_rank= Request::input('lo_rank');
-    $character->lo= Request::input('lo');
-    $character->sd_rank= Request::input('sd_rank');
-    $character->sd= Request::input('sd');
-    $character->ch_rank= Request::input('ch_rank');
-    $character->ch= Request::input('ch');
-    $character->save();
-    return redirect('/home');
-  }
   
   public function getAbilities(){
+    // *** fallback -> master doesn't have a character
     if(Auth::user()->hasRole('master')) 
     {
       return redirect()->back();
     }
+    // *** get abilities, character data of logged in user and the job of the character to show specific costs for abilities
     $abilities = Ability::orderBy('name','asc')->get();
     $character = Character::where('user', Auth::user()->name)->first();
     $findJob = Job::where('id',$character->job_id)->first();
-    // $findAbility = ::where('engl',)
-    // $character->job_id
     $costs = $findJob->engl;
     return view('character.abilities')->with('abilities',$abilities)->with('costs',$costs)->with('character',$character);
   }
   public function postAbilities(){
+    // *** save input data to character for every ability
     $abilities = Ability::orderBy('name','asc')->get();
     $character = Character::where('user', Auth::user()->name)->first();
-    //$character->li_rank= Request::input('li_rank');
     foreach($abilities as $ability){
       $abilityname = $ability->engl;
       $character->$abilityname= Request::input($abilityname);
@@ -194,16 +146,19 @@ class CharacterController extends Controller
     return redirect('character/abilities');
   }
   public function getInventory(){
+    // *** fallback -> master doesn't have a character
     if(Auth::user()->hasRole('master')) 
     {
       return redirect()->back();
     }
+    // *** get inventory of the character and abilities to add modulo
     $character = Character::where('user', Auth::user()->name)->first();
     $inventories = Inventory::where('character_id', $character->id)->get();
     $abilities = Ability::orderBy('name','asc')->get();
     return view('character.inventory')->with('character', $character)->with('inventories',$inventories)->with('abilities',$abilities);
   }
   public function postInventory(){
+    // *** save new item
     $character = Character::where('user', Auth::user()->name)->first();
     $inventory = new Inventory();
     $inventory->character_id= $character->id;
@@ -219,6 +174,7 @@ class CharacterController extends Controller
     {
       return redirect()->back();
     }
+    // *** delete item
     $inventories = Inventory::find($id);
     if($inventories){
       $inventories->delete();

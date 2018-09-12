@@ -9,11 +9,6 @@
   width: 80vw;
   margin:auto;
 }
-/* .characterformular > form{
-  display:flex;
-  flex-direction: column;
-  width: 100%;
-} */
 .characterformular textarea{
   height: 100px;
   width: 100%;
@@ -114,7 +109,7 @@ table{
   @csrf
   <div class="characterformular-top">
     <div class="characterformular-left" >
-    
+      <!-- show/save character image or show placeholde -->
       @if(empty($character->image ))
         <img src="http://placehold.it/200x300" alt="" width= "200px">
       @else
@@ -123,6 +118,7 @@ table{
       <input type="file" name="file" id="file">
       <input type="button" id="buttonUpload" value="Profilbild wählen" onclick="document.getElementById('file').click();"/>
     </div>
+    <!-- show/save character information -->
     <div class="characterformular-right">
       <div class="box">
           <div class="input-row">
@@ -164,8 +160,6 @@ table{
             <input type="number" name="weight" id="weight" value="{{old('weight')?old('weight'):$character->weight}}">
           </div>
       </div>
-      <!-- <label for="family">Familie</label>
-      <textarea name="family" id="family">{{$character->family}}</textarea> -->
     </div>
   </div>
   <div class="characterformuluar-bottom" style="margin-right: 20px;">
@@ -178,6 +172,7 @@ table{
     <label for="background">Hintergrund</label>
     <textarea name="background" id="background" >{{$character->background}}</textarea> 
   </div>
+  <!-- show/save character attributes -->
   <div class="attributes">
       <table>
         <tr>
@@ -260,7 +255,7 @@ table{
       </table>
         
     </div>
-  
+  <!-- show/save character weapons an armour -->
   <div class="gear">
     <div class="input-row">
       <label for="weapon_1">Waffe 1</label>

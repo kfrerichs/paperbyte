@@ -56,13 +56,11 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/character', 'CharacterController@postOverview'); //Charakterübersicht
     Route::get('/character/name', 'CharacterController@getName'); //Charakter Name
     Route::post('/character/name', 'CharacterController@postName'); //Charakter Name
-    Route::get('/character/new', 'CharacterController@getNew')->middleware(); //Charakter Neu
-    Route::post('/character/new', 'CharacterController@postNew'); //Charakter Neu
     Route::get('/character/abilities', 'CharacterController@getAbilities'); //Fertigkeiten Übersicht (Bearbeiten von Meister an und Abstellbar)
     Route::post('/character/abilities', 'CharacterController@postAbilities'); //Fertigkeiten Übersicht (Bearbeiten von Meister an und Abstellbar)
     Route::get('/character/inventory', 'CharacterController@getInventory'); //Inventar
     Route::post('/character/inventory', 'CharacterController@postInventory'); //Inventar
-    Route::post('/character/inventory/delete/{id?}', 'CharacterController@getDelete'); //Inventar
+    Route::get('/character/inventory/delete/{id?}', 'CharacterController@getDelete'); //Inventar
 
     Route::get('/group', 'GroupController@getOverview'); //Gruppenübersicht
     Route::get('/group/detail', 'GroupController@getDetail'); //Gruppenmitglied Detailansicht
@@ -87,10 +85,6 @@ Route::group(['middleware' => ['auth']], function(){
 
 });
 
-//pages visible for all
-//pages visible for players
-//pages visible for master
 
 Auth::routes();
 
-//Route::get('/home', 'HomeController@index')->name('home');

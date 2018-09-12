@@ -76,6 +76,7 @@
 </style>
   <form method="post" action="{{url('/play/master')}}" id="enemy">
     @csrf
+    <!-- choose enemy to play, first enemy in db is preselected -->
     <select name="chooseEnemy" id="chooseEnemy" class="chooseEnemy">
       @foreach($enemies as $enemy)
         <option value="{{$enemy->id}}" class="enemy" <?php if($enemy->id == $chosenEnemy->id) echo ' selected="selected"';?>>{{$enemy->name}}</option>
@@ -86,6 +87,7 @@
     </br>
   <form method="post" action="{{url('/play/master/points')}}" id="pointForm">
     @csrf
+    <!-- change hp and mp of chosen enemy  -->
     <label for="hp">Trefferpunkte:</label>
     <input type="hidden" name="max_hp" id="max_hp" value="{{$chosenEnemy->max_hp}}">
     <input type="number" name="hp" id="hp" value="{{old('hp')?old('hp'):$chosenEnemy->hp}}">
@@ -96,11 +98,13 @@
     <a class="btn btn-default regenerate" onClick="regenerate()">TP und MP Regenerieren</a>
   </form>
     </br>
+    <!-- change dice -->
   <label for="withoutOpen">Ohne Open-End</label>
   <input type="checkbox" name="withoutOpen" id="withoutOpen" onClick="changeDice()"></br>
   <label for="withoutAbility">Ohne Fertigkeit</label>
   <input type="checkbox" name="withoutAbility" id="withoutAbility" onClick="deleteSelection()"></br>
   <a class="btn btn-info dice" onClick="throwDice()">Würfeln</a>
+  <!-- show ability data -->
   <div class="output">
     <div class="row abilityresult">
       <span class="label">Fertigkeit:</span>
@@ -114,16 +118,19 @@
       <span class="label">Bonus:</span>
       <span class="data" id="play_bonus"></span>
     </div>
+    <!-- show dice result -->
     <div class="row">
       <span class="label">Würfel:</span>
       <span class="data" id="play_dice"></span>
     </div>
+    <!-- show overall result -->
     <div class="row">
       <span class="label">Ergebnis:</span>
       <span class="data" id="play_result"></span>
     </div>
       <h2 class="patzer"></h2>
   </div>
+  <!-- show rune level and detail -->
   <div class="runedata">
     @foreach($runes as $rune)
       <div class="{{$rune->name}} showRune">
@@ -149,6 +156,7 @@
     @endforeach
   </div>
   <h3>Fertigkeiten</h3></br>
+  <!-- clickable ability list -->
   <div class="abilities">
   @foreach($abilities as $ability)
     @php 
@@ -161,6 +169,7 @@
   @endforeach
   </div>
   <h3>Runen</h3></br>
+  <!-- clickable rune list -->
   <div class="runes">
   @foreach($runes as $rune)
     @php 

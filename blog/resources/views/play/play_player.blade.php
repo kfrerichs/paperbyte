@@ -79,6 +79,7 @@
 
 </style>
   <h1>Spielen</h1>
+  <!-- change and regenerate mp and hp -->
   <form method="post" action="{{url('/play')}}" id="pointForm">
     @csrf
     <label for="hp">Trefferpunkte:</label>
@@ -90,11 +91,13 @@
     <a class="btn btn-default save" onClick="savePoints()">Änderung speichern</a>
     <a class="btn btn-default regenerate" onClick="regenerate()">TP und MP Regenerieren</a>
   </form>
+  <!-- checkboxes to throw dice w/o open-end and/or w/o ability -->
   <label for="withoutOpen">Ohne Open-End</label>
   <input type="checkbox" name="withoutOpen" class="checkbox" id="withoutOpen" onClick="changeDice()"></br>
   <label for="withoutAbility">Ohne Fertigkeit</label>
   <input type="checkbox" name="withoutAbility" class="checkbox" id="withoutAbility" onClick="deleteSelection()"></br>
   <a class="btn btn-info dice" onClick="throwDice()">Würfeln</a>
+  <!-- output for ability-data like name, base, bonus and inventory bonus -->
   <div class="output">
     <div class="row abilityresult">
       <span class="label">Fertigkeit:</span>
@@ -112,16 +115,20 @@
     <span class="label" id="play_inventory"></span>
     <span class="data" id="play_modulo"></span>
     </div>
+    <!-- result of thrown dice -->
     <div class="row">
       <span class="label">Würfel:</span>
       <span class="data" id="play_dice"></span>
     </div>
+    <!-- overall result -> sum of all above -->
     <div class="row">
       <span class="label">Ergebnis:</span>
       <span class="data" id="play_result"></span>
     </div>
+    <!-- hints to open-end, failure and mistakes (no ability or rune chosen) -->
       <h2 class="patzer"></h2>
   </div>
+  <!-- display of rune levels from chosen rune. On click level gets chosen and mp get subtracted when dice is thrown -->
   <div class="runedata">
     @foreach($runes as $rune)
       <div class="{{$rune->name}} showRune">
@@ -147,6 +154,7 @@
     @endforeach
   </div>
   <h3>Fertigkeiten</h3></br>
+  <!-- clickable list of all abilities with data from abilites database. chosen ability gets displayed above. -->
   <div class="abilities">
   @foreach($abilities as $ability)
     @php 
@@ -156,6 +164,7 @@
     @endphp
     @foreach($inventories as $inventory)
       @if($inventory->ability_id == $ability->id)
+      <!-- hidden data to get inventory-item that is listed for the current ability -->
       <span class="hidden inName-{{$ability->id}}">{{$inventory->item_name}}</span>
       <span class="hidden inModulo-{{$ability->id}}">{{$inventory->modulo}}</span>
       @endif
@@ -164,11 +173,9 @@
   @endforeach
   </div>
   <h3>Runen</h3></br>
+  <!-- clickable list of all runes with data from runes database. chosen rune gets displayed above. -->
   <div class="runes">
   @foreach($runes as $rune)
-    @php 
-     
-    @endphp
     <div class="rune" id="playRune-{{$rune->name}}" onClick="saveRune('{{$rune->name}}',{{$character->runes_use}},{{$character->sd}},{{$character->ge}})">{{$rune->name}}</div>
   @endforeach
   </div>
