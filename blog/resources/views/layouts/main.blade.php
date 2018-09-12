@@ -26,7 +26,7 @@
         <a class="navbar-brand" href="{{ url('/home') }}"><img src="{{ asset('/img/Banner.png') }}" alt="Midgard"/></a>
 
         <!-- Collapse button -->
-        <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1"
             aria-expanded="false" aria-label="Toggle navigation"><span><i class="fa fa-bars fa-1x"></i></span></button>
 
         <!-- Collapsible content -->

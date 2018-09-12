@@ -10,6 +10,17 @@ var selectedAbility = false;
 //-------Dropdown Logout-------
 $(document).ready(function() {
   $(".dropdown-toggle").dropdown();
+  $('.navbar-toggler').on('click', function(e){
+    if($("#navbarSupportedContent1").is($(".collapse.show"))){
+      $("#navbarSupportedContent1").collapse('hide');
+      console.log('hide');
+      e.stopPropagation();
+    }
+    else{
+      $("#navbarSupportedContent1").collapse('show');
+      console.log('show');
+    }
+  });
 });
 
 //--------Bonuspoints /character/abilities-------
@@ -230,7 +241,7 @@ function saveRune(name, bonus, attr1,attr2){
   var element = '#playRune-'+name;
   $(element).addClass('selectedBox');
   var rune = '.'+name
-  $(rune).show();
+  $(rune).css("display","flex");
   // *** disable rune level, that is to high for the character (dependent on ability-bonus on runes_use)
   if(bonus < 12){
     $('.expert').children('.effects-head').addClass('disabled').attr('onClick','');

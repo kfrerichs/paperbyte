@@ -46,22 +46,7 @@ body{
     height: 100%;
     width: auto;
 }
-@media screen and (min-width:993px) {
-    .nav-item.desktop{
-        display:block;
-    }
-    .nav-item.mobile{
-        display:none;
-    }
-}
-@media screen and (max-width:992px) {
-    .nav-item.desktop{
-        display:none;
-    }
-    .nav-item.mobile{
-        display:block;
-    }
-}
+
 .menuIcon{
     height: 100px;
 }
@@ -194,7 +179,8 @@ h1, h2, h3, h4{
     font-family: 'EagleLake', Helvetica, sans-serif;
 }
 .form-control{
-    border: none;
+    border: 1px solid #4d3328;
+    border-radius:0;
 }
 .container-columns{
     width: auto;
@@ -330,16 +316,63 @@ h1, h2, h3, h4{
   .checkLabel{
     width: 150px;
   } 
-  .checkContainer{
-      display: flex;
+  .topPartPlay{
+      margin: 20px 0;
+  }
+  .points{
+    width:100%;
+    display:flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .pointsMargin{
+      margin: 10px 0;
+  }
+  .gaming{
+      display:flex;
+      flex-wrap: wrap;
+  }
+  .gaming-left{
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+      flex:1;
+      width:50%;
+  }
+  .output{
+    flex:1;
+    padding-left: 10px;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .output > .row{
+    width: 50%;
+    display:flex;
+    justify-content: space-between;
+    margin:0;
+  }
+  .chooseEnemy{
+    margin-bottom: 20px;
+  }
+  .selectEnemy{
+      display:block;
+      margin-left:auto;
+  }
+  .runedata{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   .inputWidth{
     width: 50px;
     margin-right: 50px;
     margin-bottom: 20px;
   }
-  .save, .regenerate{
-    margin-right: 50px;
+  .woMargin{
+      margin:0;
   }
   .abilities{
     display:flex;
@@ -347,6 +380,7 @@ h1, h2, h3, h4{
     margin:auto;
     align-items:flex-start;
     justify-content:flex-start;
+    margin-bottom: 20px;
   }
   .ability{
     text-align:center;
@@ -361,10 +395,10 @@ h1, h2, h3, h4{
     margin:auto;
     align-items:flex-start;
     justify-content:flex-start;
-  }
-  .rune{
+}
+.rune{
     text-align:center;
-    border: 1px solid brown;
+    border: 1px solid #4d3328;
     margin:5px;
     padding:10px;
     cursor:pointer;
@@ -411,6 +445,8 @@ h1, h2, h3, h4{
   }
   .showRune{
     display:none;
+    align-items: center;
+    flex-direction: column;
   }
   .hidden{
     display:none;
@@ -458,6 +494,23 @@ h1, h2, h3, h4{
         height: 30px;
         padding: 20px;
     }
+    .nav-item.desktop{
+        display:none;
+    }
+    .nav-item.mobile{
+        display:block;
+    }
+}
+@media screen and (min-width:993px) {
+    .nav-item.desktop{
+        display:block;
+    }
+    .nav-item.mobile{
+        display:none;
+    }
+    .navbar-toggler{
+        display:none;
+    }
 }
 
 @media screen and (max-width: 776px){
@@ -466,5 +519,47 @@ h1, h2, h3, h4{
     }
     .characterformular-right .box{
         width: 100%;
+    }
+    .gaming-left{
+        width: 75%;
+        flex:auto;
+    }
+    .output{
+        flex:auto;
+        width: 75%;
+    }
+    .output > .row{
+        width: 75%;
+    }
+    .navbar-brand > img{
+        max-width:200px;
+    }
+    #headerPlay{
+        font-size: 2rem;
+    }
+    .bottomPartPlay > h3{
+        font-size: 1.2rem;   
+    }
+    .effects{
+        flex-wrap:wrap;
+        width:auto;
+        text-align:center;
+    }
+    .effects .effects-head{
+        margin:auto;
+    }
+    .effects > .novice , .effects > .adept , .effects > .expert{ 
+        width:100%;
+    }
+}
+@media screen and (max-width: 500px){
+    .output{
+        width: 75%;
+    }
+    .output > .row{
+        width:100%;
+    }
+    .navbar-brand > img{
+        max-width:150px;
     }
 }
