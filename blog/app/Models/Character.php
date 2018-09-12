@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Character extends Model
 {
+    public static $rules = array('name' => 'required');
+
   public function job()
   {
       return $this->belongsTo('App\Models\Job');

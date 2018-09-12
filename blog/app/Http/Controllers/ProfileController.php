@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Hash;
 use App\User;
+use App\Models\Group;
 use App\Models\Character;
 
 
@@ -24,12 +25,12 @@ class ProfileController extends Controller
  
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+            return redirect()->back()->with("error","Deine eingegebenen Passwörter stimmen nicht überein.");
         }
  
         if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
             //Current password and new password are same
-            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+            return redirect()->back()->with("error","Dein neues Passwort kann nicht dein bisheriges Passwort sein. Versuche ein anderes.");
         }
  
         $validatedData = $request->validate([
@@ -42,7 +43,7 @@ class ProfileController extends Controller
         $user->password = bcrypt($request->get('new-password'));
         $user->save();
  
-        return redirect()->back()->with("success","Password changed successfully !");
+        return redirect()->back()->with("success","Passwort erfolgreich geändert!");
  
     }
 
@@ -54,7 +55,7 @@ class ProfileController extends Controller
     public function postName(Request $request){
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+            return redirect()->back()->with("error","Das Passwort ist falsch.");
         }
 
         $newName = $request->get('new-name');
@@ -64,8 +65,19 @@ class ProfileController extends Controller
         $user->save();
 
         $userInCharacter = Character::where('user', Auth::user()->name)->first();
-        $userInCharacter->user = $newName;
-        $userInCharacter->save();
+        if($userInCharacter)
+        {
+            $userInCharacter->user = $newName;
+            $userInCharacter->save();
+        }
 
+        $userInGroup = Group::where('username', Auth::user()->name)->first();
+        if($userInCharacter)
+        {
+            $userInGroup->username = $newName;
+            $userInGroup->save();
+        }
+
+        return redirect()->back()->with("success","Name erfolgreich geändert!");
     }
 }

@@ -42,6 +42,7 @@ class PlayController extends Controller
 
   public function getPlayMaster(){
     // *** only Master
+    
     if(Auth::user()->hasRole('player')) 
     {
       return redirect()->back();
@@ -63,6 +64,7 @@ class PlayController extends Controller
     // *** return view with variables/arrays
     return view('play.play_master')->with('enemies', $enemies)->with('chosenEnemy',$chosenEnemy)->with('abilities',$abilities)->with('runes',$runes);
   }
+
   public function postPlayMaster(){
     // *** get the ID of chosen enemy from selectbox and save it to a cookie, then redirect.
     $getEnemy = Request::input('chooseEnemy');

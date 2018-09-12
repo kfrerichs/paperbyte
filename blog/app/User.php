@@ -27,10 +27,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function group()
-    {
-      return $this->belongsToMany('App\Group');
-    }
 
     public function protocols(){
         return $this->hasMany('App\Protocol');
@@ -44,6 +40,7 @@ class User extends Authenticatable
         return $this->belongsToMany('App\Role');
     }
 
+    // Aus dem Tutorial von https://medium.com/@ezp127/laravel-5-4-native-user-authentication-role-authorization-3dbae4049c8a
     // /**
     // * @param string|array $roles
     // */
@@ -58,7 +55,7 @@ class User extends Authenticatable
     }
 
     // /**
-    // * Check multiple roles
+    // * Check if any role
     // * @param array $roles
     // */
     public function hasAnyRole($roles)

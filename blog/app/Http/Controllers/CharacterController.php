@@ -111,6 +111,21 @@ class CharacterController extends Controller
   public function postName(){
     // *** to get a character the name must be unique. if the name of the character is unique the user gets redirected to character overview page to save his data.
     // *** the charactername gets also written into group db
+
+    $validator = Validator::make(Request::all(), Group::$rules);
+
+    if ($validator->fails())
+    {
+        return redirect('character/name')->withErrors($validator)->withInput();
+    }
+
+    $characterWithSameName = Character::where('name', Request::input('name'))->get();
+    $errorMessage = "Name ist bereits vergeben";
+    if($characterWithSameName->count() > 0)
+    {
+      return redirect('character/name')->withError($errorMessage);
+    }
+    
     $character = new Character;
     $character->user = Auth::user()->name;
     $character->name = Request::input('name');
