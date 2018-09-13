@@ -232,7 +232,7 @@ h1, h2, h3, h4{
 
 /* Characterformular */
 .characterformular{
-  width: 80vw;
+  max-width: 70vw;
   margin:auto;
 }
 .characterformular textarea{

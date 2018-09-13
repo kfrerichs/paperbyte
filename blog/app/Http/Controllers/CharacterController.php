@@ -54,6 +54,7 @@ class CharacterController extends Controller
     $character->weight= Request::input('weight');
     $character->family= Request::input('family');
     $character->looks= Request::input('looks');
+    $character->personality= Request::input('personality');
     $character->background= Request::input('background');
     $character->weapon_1_id= Request::input('weapon_1_id');
     $character->weapon_2_id= Request::input('weapon_2_id');
