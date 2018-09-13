@@ -145,7 +145,15 @@ class CharacterController extends Controller
     // *** get abilities, character data of logged in user and the job of the character to show specific costs for abilities
     $abilities = Ability::orderBy('name','asc')->get();
     $character = Character::where('user', Auth::user()->name)->first();
-    $findJob = Job::where('id',$character->job_id)->first();
+
+    if($character->job_id == null)
+    {
+      $findJob = Job::where('id','1')->first();
+    }
+    else
+    {
+      $findJob = Job::where('id',$character->job_id)->first();
+    }
     $costs = $findJob->engl;
     return view('character.abilities')->with('abilities',$abilities)->with('costs',$costs)->with('character',$character);
   }

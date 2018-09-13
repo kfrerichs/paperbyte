@@ -55,10 +55,15 @@
               <option value="{{$ability->id}}">{{$ability->name}}</option>
             @endforeach
           </select>
-      	</td>
-        <td>
-          <button type="submit" class="savechanges">Änderungen speichern</button>
         </td>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <button type="submit" class="savechanges">Änderungen speichern</button>
+          </td>
+      </tr>
       </tr>
   </form>
 </table>
