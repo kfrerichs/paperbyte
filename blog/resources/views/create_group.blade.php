@@ -20,10 +20,6 @@
                         </span>
                     @endif                                              
                 </div>
-                <!-- custom error message-->
-                <div>
-                    {{$errorMessageNew}}
-                </div>
                 <!-- submit of create group-->
                 <div class="form-group row mb-0">
                     <div class="col-md-6 offset-md-4">

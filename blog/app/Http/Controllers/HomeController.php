@@ -44,17 +44,7 @@ class HomeController extends Controller
             return redirect()->back();
         }
 
-        // *** custom error - if session has the value "new" handover the errormessage
-        $errorMessageNew ='';
-        $value = Session::get('error');
-
-        if ($value == 'new')
-        {
-            $errorMessageNew = 'Die angegebene Gruppe existiert bereits!';
-        }
-
-        Session::put('error', '');
-        return view('create_group')->with('errorMessageNew',$errorMessageNew);
+        return view('create_group');
     }
 
     public function getJoinGroup()
@@ -66,16 +56,7 @@ class HomeController extends Controller
             return redirect()->back();
         }
         
-        // *** custom error - if session has the value "join" handover the errormessage
-        $errorMessageJoin ='';
-        $value = Session::get('error');
-
-        if ($value == 'join'){
-            $errorMessageJoin = 'Die angegebene Gruppe existiert nicht!';
-        }
-
-        Session::put('error', '');
-        return view('join_group')->with('errorMessageJoin',$errorMessageJoin);
+        return view('join_group');
     }
 
     public function postCreateGroupJoin()
@@ -113,9 +94,8 @@ class HomeController extends Controller
         }
         else
         {
-            // *** if the group name did not exist set the session value and redirect
-            Session::put('error', 'join');
-            return redirect()->back();
+            // *** if the group exists not set custom Error and redirect
+            return redirect()->back()->withErrors('Die angegebene Gruppe existiert nicht!');
         }
     }
 
@@ -154,9 +134,8 @@ class HomeController extends Controller
         }
         else
         {
-            // *** if the group name exist set the session value and redirect
-            Session::put('error', 'new');
-            return redirect()->back();
+            // *** if the group name exist set custom Error and redirect
+            return redirect()->back()->withErrors('Der angegebene Gruppename existiert bereits!');
         }
     }
     

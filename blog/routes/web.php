@@ -1,17 +1,6 @@
 <?php
 
-use App\User;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+//use App\User;
 
 Route::get('/', function () {
     return redirect('home');
@@ -19,63 +8,63 @@ Route::get('/', function () {
 
 Route::group(['middleware' => ['auth']], function(){
 
-    Route::get('/creategroup', 'HomeController@getCreateGroup'); //Gruppe erstellen Seite 
-    Route::get('/joingroup', 'HomeController@getJoinGroup'); //Gruppe erstellen Seit
+    Route::get('/creategroup', 'HomeController@getCreateGroup'); 
+    Route::get('/joingroup', 'HomeController@getJoinGroup');
     Route::post('/creategroup/join', 'HomeController@postCreateGroupJoin');
     Route::post('/creategroup/new', 'HomeController@postCreateGroupNew');
 
     Route::group(['middleware' => ['group']], function(){
 
-        Route::resource('/home', 'ProtocolController', [        //Protokollseite
+        Route::resource('/home', 'ProtocolController', [
             'except' => ['create', 'show']
         ]);
         
-        Route::resource('home/adventure', 'AdventureController',[       //Abenteuerseite (nur für Meister sichtbar)
+        Route::resource('home/adventure', 'AdventureController',[
             'except' => ['create', 'show']
         ]);
 
-        Route::get('/home/npcs', 'HomeController@getNpc'); //NPC Übersicht (nur von Meister bearbeitbar)
+        Route::get('/home/npcs', 'HomeController@getNpc');
 
-        Route::get('/home/npcs/edit', 'HomeController@getNpcEdit'); //NPC bearbeiten (nur für Meister sichtbar)
-        Route::post('/home/npcs/edit', 'HomeController@postNpcEdit'); //NPC bearbeiten (nur für Meister sichtbar)
-        Route::get('/home/places', 'HomeController@getPlaces'); //Ort Übersicht (nur von Meister bearbeitbar)
-        Route::get('/home/places/edit', 'HomeController@getPlacesEdit'); //Ort Übersicht (nur von Meister bearbeitbar)
-        Route::post('/home/places/edit', 'HomeController@postPlacesEdit'); //Ort Übersicht (nur von Meister bearbeitbar)
+        Route::get('/home/npcs/edit', 'HomeController@getNpcEdit');
+        Route::post('/home/npcs/edit', 'HomeController@postNpcEdit');
+        Route::get('/home/places', 'HomeController@getPlaces');
+        Route::get('/home/places/edit', 'HomeController@getPlacesEdit'); 
+        Route::post('/home/places/edit', 'HomeController@postPlacesEdit');
 
-        Route::get('/character/name', 'CharacterController@getName'); //Charakter Name
-        Route::post('/character/name', 'CharacterController@postName'); //Charakter Name
+        Route::get('/character/name', 'CharacterController@getName');
+        Route::post('/character/name', 'CharacterController@postName');
 
         Route::group(['middleware' => ['character']], function(){
 
-            Route::get('/character', 'CharacterController@getOverview'); //Charakterübersicht
-            Route::post('/character', 'CharacterController@postOverview'); //Charakterübersicht
-            Route::get('/character/abilities', 'CharacterController@getAbilities'); //Fertigkeiten Übersicht (Bearbeiten von Meister an und Abstellbar)
-            Route::post('/character/abilities', 'CharacterController@postAbilities'); //Fertigkeiten Übersicht (Bearbeiten von Meister an und Abstellbar)
-            Route::get('/character/inventory', 'CharacterController@getInventory'); //Inventar
-            Route::post('/character/inventory', 'CharacterController@postInventory'); //Inventar
-            Route::get('/character/inventory/delete/{id?}', 'CharacterController@getDelete'); //Inventar
+            Route::get('/character', 'CharacterController@getOverview');
+            Route::post('/character', 'CharacterController@postOverview');
+            Route::get('/character/abilities', 'CharacterController@getAbilities');
+            Route::post('/character/abilities', 'CharacterController@postAbilities');
+            Route::get('/character/inventory', 'CharacterController@getInventory');
+            Route::post('/character/inventory', 'CharacterController@postInventory');
+            Route::get('/character/inventory/delete/{id?}', 'CharacterController@getDelete');
 
-            Route::get('/group', 'GroupController@getOverview'); //Gruppenübersicht
-            Route::get('/group/detail/{id?}', 'GroupController@getDetail'); //Gruppenmitglied Detailansicht
+            Route::get('/group', 'GroupController@getOverview');
+            Route::get('/group/detail/{id?}', 'GroupController@getDetail');
 
-            Route::get('/play', 'PlayController@getPlay'); //Spielseite (nur für Spieler sichtbar)
-            Route::post('/play', 'PlayController@postPlay'); //Spielseite (nur für Spieler sichtbar)
-            Route::get('/play/master', 'PlayController@getPlayMaster'); //Spielseite (nur für Meister sichtbar)
-            Route::post('/play/master', 'PlayController@postPlayMaster'); //Spielseite (nur für Meister sichtbar)
-            Route::post('/play/master/points', 'PlayController@postPlayMasterPoints'); //Spielseite (nur für Meister sichtbar)
+            Route::get('/play', 'PlayController@getPlay');
+            Route::post('/play', 'PlayController@postPlay');
+            Route::get('/play/master', 'PlayController@getPlayMaster');
+            Route::post('/play/master', 'PlayController@postPlayMaster');
+            Route::post('/play/master/points', 'PlayController@postPlayMasterPoints');
         });
 
-        Route::get('/profile/password', 'ProfileController@getPass'); //Passwort ändern
-        Route::post('/profile/password', 'ProfileController@postPass')->name('changePassword'); //Passwort ändern
-        Route::get('/profile/name', 'ProfileController@getName'); //Name und Email ändern
-        Route::post('/profile/name', 'ProfileController@postName'); //Name und Email ändern
+        Route::get('/profile/password', 'ProfileController@getPass'); 
+        Route::post('/profile/password', 'ProfileController@postPass')->name('changePassword');
+        Route::get('/profile/name', 'ProfileController@getName');
+        Route::post('/profile/name', 'ProfileController@postName');
 
-        Route::get('/rules', 'RulesController@getIndex'); //Midgard Seite
-        Route::get('/rules/weapons', 'RulesController@getWeapons'); //Waffen Seite
-        Route::get('/rules/runes', 'RulesController@getRunes'); //Runen Seite
-        Route::get('/rules/potions', 'RulesController@getPotions'); //Tränke Seite
-        Route::get('/rules/character_file', 'RulesController@getCharacterfile'); //Charakterbogen Seite
-        Route::get('/rules/fail_table', 'RulesController@getFailtable'); //Patzertabelle Seite
+        Route::get('/rules', 'RulesController@getIndex');
+        Route::get('/rules/weapons', 'RulesController@getWeapons');
+        Route::get('/rules/runes', 'RulesController@getRunes');
+        Route::get('/rules/potions', 'RulesController@getPotions');
+        Route::get('/rules/character_file', 'RulesController@getCharacterfile');
+        Route::get('/rules/fail_table', 'RulesController@getFailtable');
         });
 });
 
