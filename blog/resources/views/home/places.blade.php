@@ -1,27 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<style>
-    h4{
-        margin-top: 30px;
-    }
-    table{
-        font-family: 'EagleLake', Helvetica, sans-serif;
-        font-size: 14px;
-        color: #4d3328;
-        width: 100%;
-    }
-    #imgCell{
-        width: 35%;
-    }
-    #imgCell img{
-        width: 100%;
-        height: auto;
-    }
-    #scriptCell{
-        padding-left: 20px;
-    }
-</style>
+
 @include('inc.homeBar')
 
 <div class="container">
@@ -31,8 +11,8 @@
                 <h1>Orte</h1>
                 @foreach($places as $place)
                     <div>
-                        <table>
-                            <h4>{{$place->name}}</h4>
+                        <table class="placesTable">
+                            <h4 class="placesHeader">{{$place->name}}</h4>
                             <tr>
                                 <td id="imgCell">
                                     <!-- @php

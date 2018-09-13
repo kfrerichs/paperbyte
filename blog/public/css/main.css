@@ -195,6 +195,41 @@ h1, h2, h3, h4{
     cursor: pointer;
 }
 
+/* NPCs */
+.npcHeader{
+    margin-top: 30px;
+}
+.npcTable{
+    border: 1px solid #4d3328;
+    font-family: 'EagleLake', Helvetica, sans-serif;
+    font-size: 14px;
+    /* width: 100%; */
+}
+.npcTable td, .npcTable th{
+    padding: 8px;
+}
+
+/* Places */
+.placesHeader{
+    margin-top: 30px;
+}
+.placesTable{
+    font-family: 'EagleLake', Helvetica, sans-serif;
+    font-size: 14px;
+    color: #4d3328;
+    width: 100%;
+}
+#imgCell{
+    width: 35%;
+}
+#imgCell img{
+    width: 100%;
+    height: auto;
+}
+#scriptCell{
+    padding-left: 20px;
+}
+
 /* Characterformular */
 
 .characterformular{

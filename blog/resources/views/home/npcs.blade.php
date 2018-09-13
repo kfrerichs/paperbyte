@@ -1,20 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<style>
-    h4{
-        margin-top: 30px;
-    }
-    table{
-        border: 1px solid #4d3328;
-        font-family: 'EagleLake', Helvetica, sans-serif;
-        font-size: 14px;
-        /* width: 100%; */
-    }
-    table td, table th{
-        padding: 8px;
-    }
-</style>
+
 @include('inc.homeBar')
 
 <div class="container">
@@ -24,8 +11,8 @@
                 <h1>NPCS</h1>
                     @foreach($npcs as $npc)
                     <div>
-                        <table>
-                            <h4>{{$npc->name}}</h4>
+                        <table class="npcTable">
+                            <h4 class="npcHeader">{{$npc->name}}</h4>
                             <tr>
                                 <td>Name:</td>
                                 <td>{{$npc->name}}</td>
