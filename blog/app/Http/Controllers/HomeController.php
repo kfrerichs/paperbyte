@@ -35,42 +35,16 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    // public function index()
-    // {
-    //     // public function index(Request $request)
-    //     // {
-    //     //     $request->user()->authorizeRoles(['employee', 'manager']);
-    //     // @if(Auth::user()->hasRole(‘manager’)) 
-
-    //    // $cookieGroup = request()->cookie('group');
-    //     // $cookieCharacter = request()->cookie('character');
-    //     return view('home')->with('cookieGroup',$cookieGroup)->with('cookieCharacter', $cookieCharacter);
-    // }
-
-    // public function getProtocol(){
-    //     $protocols = Protocol::orderBy('created_at','asc')->paginate(10);
-    //     return view('home.protocol.index')->with('protocols', $protocols);
-    // }
-
-    // public function getAdventure(){
-    //     $adventures = Adventure::orderBy('created_at','asc')->paginate(10);
-    //     return view('home.adventure.index')->with('adventures', $adventures);
-
-        //$user_id = auth()->user()->id;
-        //$user = User::find($user_id);
-        //return view('home.protocol.index')->with('protocols', $protocols);//->with('protocols', $user->protocols);
-        
-    // }
-
-
     public function getCreateGroup()
     {
+        // *** check if user has already a group -> if he has redirect back
         $groupmember = Group::where('username', Auth::user()->name)->get();
 
         if($groupmember->count() > 0){
             return redirect()->back();
         }
 
+        // *** custom error - if session has the value "new" handover the errormessage
         $errorMessageNew ='';
         $value = Session::get('error');
 
@@ -85,12 +59,14 @@ class HomeController extends Controller
 
     public function getJoinGroup()
     {
+        // *** check if user has already a group -> if he has redirect back
         $groupmember = Group::where('username', Auth::user()->name)->get();
 
         if($groupmember->count() > 0){
             return redirect()->back();
         }
         
+        // *** custom error - if session has the value "join" handover the errormessage
         $errorMessageJoin ='';
         $value = Session::get('error');
 
@@ -102,13 +78,15 @@ class HomeController extends Controller
         return view('join_group')->with('errorMessageJoin',$errorMessageJoin);
     }
 
-    public function postCreateGroupJoin(Request $request)
+    public function postCreateGroupJoin()
     {   
+        // *** check if the group exist
         $groupName = Request::input('name');
         $groupNameExist = Group::where('name','LIKE', '%'.$groupName.'%')->get();
 
         if(count($groupNameExist)>0)
         {
+            // *** check if the validation rules are respected
             $validator = Validator::make(Request::all(), Group::$rules);
 
             if ($validator->fails())
@@ -117,10 +95,12 @@ class HomeController extends Controller
             }
             else
             {
+                // *** attach the role player to the user
                 $role_player = Role::where('name', 'player')->first();
                 $user = User::where('name','LIKE','%'.Auth::user()->name.'%')->first();
                 $user->roles()->attach($role_player);
 
+                // *** enter the user to the group table
                 $group = new Group();
                 $group->name = $groupName;
                 $group->username =  Auth::user()->name;
@@ -133,18 +113,21 @@ class HomeController extends Controller
         }
         else
         {
+            // *** if the group name did not exist set the session value and redirect
             Session::put('error', 'join');
             return redirect()->back();
         }
     }
 
-    public function postCreateGroupNew(Request $request)
+    public function postCreateGroupNew()
     {
+        // *** check if the group did not exist
         $groupName = Request::input('name');
         $groupNameExist = Group::where('name','LIKE', '%'.$groupName.'%')->get();
 
         if(count($groupNameExist)<1)
         {
+             // *** check if the validation rules are respected
             $validator = Validator::make(Request::all(), Group::$rules);
 
             if ($validator->fails())
@@ -153,10 +136,12 @@ class HomeController extends Controller
             }
             else
             {
+                // *** attach the role player to the user
                 $role_master = Role::where('name', 'master')->first();
                 $user = User::where('name','LIKE','%'.Auth::user()->name.'%')->first();
                 $user->roles()->attach($role_master);
                 
+                // *** enter the user to the group table
                 $group = new Group();
                 $group->name = $groupName;
                 $group->username =  Auth::user()->name;
@@ -169,17 +154,21 @@ class HomeController extends Controller
         }
         else
         {
+            // *** if the group name exist set the session value and redirect
             Session::put('error', 'new');
             return redirect()->back();
         }
     }
-
+    
     public function getNpc(){
+        // *** get all npcs and places and pass it to the view
         $npcs = Npc::all();
         $places = Place::all();
         return view('home.npcs')->with('npcs', $npcs)->with('places', $places);   
     }
+
     public function getPlaces(){
+        // *** get all places and pass it to the view
         $places = Place::all();
         return view('home.places')->with('places', $places);   
     }

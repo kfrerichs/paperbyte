@@ -35,12 +35,11 @@ body{
 .navbar-nav .dropdown-menu, .characterformular textarea, input, select{
     border: 1px solid #dac4ab;
 }
-/* #navbarDropdown{
+#navbarDropdown{
     color: #4d3328;
     font-size: 20pt;
-    height: auto;
-    margin-top: 50%;
-} */
+    margin-top: 100%;
+} 
 .nav-item{
     margin-right: 30px;
     height: 100%;

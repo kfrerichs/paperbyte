@@ -5,7 +5,7 @@
         <div class="card-body">
             <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                 @csrf
-
+                <!-- enter the Accountname -->
                 <div class="form-group row">
                     <label for="name" class="col-sm-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
@@ -19,7 +19,7 @@
                         @endif
                     </div>                                                          
                 </div>
-
+                <!-- enter the Passwort -->
                 <div class="form-group row">
                     <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Passwort') }}</label>
 
@@ -33,7 +33,7 @@
                         @endif
                     </div>
                 </div>
-
+                <!-- Remember Passwort -->
                 <div class="form-group row">
                     <div class="col-md-6 offset-md-4">
                         <div class="form-check">
@@ -45,12 +45,17 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- Login submit -->
                 <div class="form-group row mb-0">
                     <div class="col-md-8 offset-md-4">
                         <button type="submit" class="btn btn-primary">
                             {{ __('Login') }}
                         </button>
+                    </div>
+                </div>
+                <!-- Link to Register -->
+                <div class="form-group row mb-0">
+                    <div class="col-md-8 offset-md-4">
                         <a class="nav-link" href="{{ route('register') }}">{{ __('Registrieren') }}</a>
                     </div>
                 </div>

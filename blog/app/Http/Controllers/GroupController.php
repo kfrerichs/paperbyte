@@ -11,6 +11,12 @@ class GroupController extends Controller
 {
     public function getOverview(){
         $character = Character::where('user', Auth::user()->name)->first(); //Charakter des angemeldeten Users
+
+        if($character == null)
+        {
+        return redirect('/character/name');
+        }
+        
         $group = Group::where('charactername', $character->name)->first(); // Name der Gruppe in der der Charakter sich befindet
         $members = Group::where('name',$group->name)->get();
         $allCharacters = Character::all();
