@@ -25,12 +25,6 @@ class CharacterController extends Controller
     // *** get character data from logged in user, the job db, the weapon db and armour db.
     // *** return view with variables/arrays
     $character = Character::where('user', Auth::user()->name)->first();
-
-    if($character == null)
-    {
-      return redirect('/character/name');
-    }
-    
     $jobs = Job::orderBy('name','asc')->get();
     $weapons = Weapon::orderBy('name','asc')->get();
     $armours = Armour::orderBy('id','asc')->get();

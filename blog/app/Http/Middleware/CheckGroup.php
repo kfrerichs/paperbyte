@@ -3,10 +3,10 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Models\Group;
 use Auth;
+use App\Models\Group;
 
-class CheckCharacter
+class CheckGroup
 {
     /**
      * Handle an incoming request.
@@ -17,13 +17,12 @@ class CheckCharacter
      */
     public function handle($request, Closure $next)
     {
-        $characterInGroup = Group::where('username', Auth::user()->name)->first();
-    
-        if($characterInGroup->charactername == '')
+        $userInGroup = Group::where('username', Auth::user()->name)->first();
+        if($userInGroup == null)
         {
-        return redirect('/character/name');
+            return redirect('joingroup');
         }
-
+        
         return $next($request);
     }
 }

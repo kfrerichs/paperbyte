@@ -53,7 +53,6 @@
                     @else
                         <p>Es sind noch keine Protokolleinträge vorhanden.</p>
                     @endif
-
                 </div>
             </div>
         </div>

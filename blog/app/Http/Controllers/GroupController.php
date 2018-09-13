@@ -10,18 +10,24 @@ use Auth;
 class GroupController extends Controller
 {
     public function getOverview(){
-        $character = Character::where('user', Auth::user()->name)->first(); //Charakter des angemeldeten Users
 
-        if($character == null)
+        if(Auth::user()->hasRole('player'))
         {
-        return redirect('/character/name');
+            $character = Character::where('user', Auth::user()->name)->first(); //Charakter des angemeldeten Users
+            $group = Group::where('charactername', $character->name)->first(); // Name der Gruppe in der der Charakter sich befindet
         }
-        
-        $group = Group::where('charactername', $character->name)->first(); // Name der Gruppe in der der Charakter sich befindet
+
+        if(Auth::user()->hasRole('master'))
+        {
+            $character = 'master';
+            $group = Group::where('charactername', $character)->where('username', Auth::user()->name)->first();
+        }
+
         $members = Group::where('name',$group->name)->get();
         $allCharacters = Character::all();
         return view('group.group')->with('members', $members)->with('allCharacters', $allCharacters)->with('character', $character);
     }
+    
     public function getDetail($id=null){
         $character = Character::find($id);
         $job = Job::find($id);
