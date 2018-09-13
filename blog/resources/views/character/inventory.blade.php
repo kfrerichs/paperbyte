@@ -8,15 +8,14 @@
 .bonusList{
   list-style-type:none;
   display:flex;
-  color:grey;
+  color: #4d3328;
 }
 .bonusList li:nth-child(2n+2){
   margin-left:5px;
 }
 .selected{
-  color:black;
+  color: #32cdcd;
 }
-
 </style>
 <table>
   <tr>

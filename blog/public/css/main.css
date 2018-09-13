@@ -231,16 +231,10 @@ h1, h2, h3, h4{
 }
 
 /* Characterformular */
-
 .characterformular{
   width: 80vw;
   margin:auto;
 }
-/* .characterformular > form{
-  display:flex;
-  flex-direction: column;
-  width: 100%;
-} */
 .characterformular textarea{
   height: 100px;
   width: 100%;
@@ -262,7 +256,6 @@ h1, h2, h3, h4{
 .characterformular-right{
   display:flex;
   flex-flow: row wrap;
-  width: 100%;
   justify-content: space-between;
 }
 .characterformular-right textarea{
@@ -279,7 +272,6 @@ h1, h2, h3, h4{
   margin-bottom: 20px;
 }
 .box .input-row label{
-  width: 100px;
   text-align: left;
 }
 .gear .input-row select{
@@ -300,7 +292,6 @@ h1, h2, h3, h4{
 .savechanges{
   display:block;
   margin-left: auto;
-  /* margin-right: 10vw; */
   margin-right: 20px;
   margin-top: 20px;
   margin-bottom: 100px;
@@ -341,6 +332,7 @@ h1, h2, h3, h4{
 .labelTop{
     margin-top: 20px;
 }
+
 
 /* Playpage */
   .checkbox{
@@ -485,6 +477,14 @@ h1, h2, h3, h4{
   .hidden{
     display:none;
   }
+/* Login */
+.loginCheck{
+    width: auto;
+}
+.charSave{
+    margin-top: 20px;
+}
+
 
 /* BurgerMenu */
 
@@ -520,7 +520,6 @@ h1, h2, h3, h4{
     .mr-auto{
         background-color: #ffffff;
         border: 1px solid #4b3328;
-        /* margin-left: 30%; */
         text-align: center;
         height: 250px;
     }
