@@ -12,7 +12,7 @@
       @if(empty($character->image ))
         <img id="placeholder" src="http://placehold.it/200x300" alt="" width= "200px">
       @else
-        <img id="placeholder" src="{{ asset('images/character' . $character->image) }}" alt="" width= "200px">
+        <img id="placeholder" src="{{ asset('images/character/' . $character->image) }}" alt="" width= "200px">
       @endif
       <input type="file" name="file" id="file">
       <input type="button" id="buttonUpload" value="Profilbild wählen" onclick="document.getElementById('file').click();"/>

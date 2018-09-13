@@ -484,6 +484,10 @@ h1, h2, h3, h4{
 .charSave{
     margin-top: 20px;
 }
+.picMargin{
+    margin-top: 50px;
+    margin-bottom :50px;
+}
 
 /* Change */
 .noForm{

@@ -6,6 +6,9 @@
             <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                 @csrf
                 <!-- enter the Accountname -->
+                <div class="col-md-8 offset-md-4 picMargin">
+                    <img src="{{ asset('/img/Banner.png') }}" alt="Midgard"/>
+                </div>
                 <div class="form-group row">
                     <label for="name" class="col-sm-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
