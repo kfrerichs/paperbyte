@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Change password</div>
+                <div class="panel-heading">Accountnamen ändern</div>
  
                 <div class="panel-body">
 
@@ -13,7 +13,7 @@
                         {{ csrf_field() }}
  
                         <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
-                            <label for="new-password" class="col-md-4 control-label">Current Password</label>
+                            <label for="new-password" class="col-md-4 control-label">Passwort</label>
  
                             <div class="col-md-6">
                                 <input id="current-password" type="password" class="form-control" name="current-password" required>

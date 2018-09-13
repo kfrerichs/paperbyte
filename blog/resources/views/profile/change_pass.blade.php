@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Change password</div>
+                <div class="panel-heading">Passwort ändern</div>
  
                 <div class="panel-body">
 
@@ -13,7 +13,7 @@
                         {{ csrf_field() }}
  
                         <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
-                            <label for="new-password" class="col-md-4 control-label">Current Password</label>
+                            <label for="new-password" class="col-md-4 control-label">Aktuelles Passwort</label>
  
                             <div class="col-md-6">
                                 <input id="current-password" type="password" class="form-control" name="current-password" required>
@@ -27,7 +27,7 @@
                         </div>
  
                         <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
-                            <label for="new-password" class="col-md-4 control-label">New Password</label>
+                            <label for="new-password" class="col-md-4 control-label">Neues Passwort</label>
  
                             <div class="col-md-6">
                                 <input id="new-password" type="password" class="form-control" name="new-password" required>
@@ -41,7 +41,7 @@
                         </div>
  
                         <div class="form-group">
-                            <label for="new-password-confirm" class="col-md-4 control-label">Confirm New Password</label>
+                            <label for="new-password-confirm" class="col-md-4 control-label">Neues Passwort bestätigen</label>
  
                             <div class="col-md-6">
                                 <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Passowrt ändern
+                                    Passwort ändern
                                 </button>
                             </div>
                         </div>

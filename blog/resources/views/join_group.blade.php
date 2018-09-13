@@ -5,7 +5,7 @@
 
     <div class="container">
         <div>
-            <p>Gib den Gruppennamen ein um ihr Beizustreten</p>
+            <p>Gib den Gruppennamen ein um ihr Beizustreten. Trittst du einer Gruppe bei bist du Spieler</p>
         </div>
         <form method="POST" action="{{url('creategroup/join')}}">
             @csrf
@@ -35,7 +35,7 @@
             
         </form>
 
-        <a href="{{ url('creategroup') }}">Gruppe erstellen</a>
+        <a class="btn btn-primary" href="{{ url('creategroup') }}">Gruppe erstellen (Meister werden)</a>
           
         
     </div>
