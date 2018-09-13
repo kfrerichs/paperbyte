@@ -13,7 +13,7 @@
                             {{ csrf_field() }}
                             <!-- enter the current password -->
                             <div class="form-group{{ $errors->has('current-password') ? ' has-error' : '' }}">
-                                <label for="new-password" class="col-md-4 control-label">Aktuelles Passwort</label>
+                                <label for="new-password" class="newNL col-md-4 control-label">Aktuelles Passwort</label>
     
                                 <div class="col-md-6">
                                     <input id="current-password" type="password" class="form-control" name="current-password" required>
@@ -27,7 +27,7 @@
                             </div>
                             <!-- enter the new password -->
                             <div class="form-group{{ $errors->has('new-password') ? ' has-error' : '' }}">
-                                <label for="new-password" class="col-md-4 control-label">Neues Passwort</label>
+                                <label for="new-password" class="newNL col-md-4 control-label">Neues Passwort</label>
     
                                 <div class="col-md-6">
                                     <input id="new-password" type="password" class="form-control" name="new-password" required>
@@ -41,7 +41,7 @@
                             </div>
                             <!-- confirm the new password -->
                             <div class="form-group">
-                                <label for="new-password-confirm" class="col-md-4 control-label">Neues Passwort bestätigen</label>
+                                <label for="new-password-confirm" class="newNL col-md-4 control-label">Neues Passwort bestätigen</label>
     
                                 <div class="col-md-6">
                                     <input id="new-password-confirm" type="password" class="form-control" name="new-password_confirmation" required>

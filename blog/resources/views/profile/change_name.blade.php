@@ -26,8 +26,8 @@
                                 </div>
                             </div>
                             <!-- enter the new accountname -->
-                            <div class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}">
-                                <label for="new-name" class="col-md-4 control-label">Neuer Accountname</label>
+                            <div class="noForm form-control{{ $errors->has('name') ? ' is-invalid' : '' }}">
+                                <label for="new-name" class="newNL col-md-4 control-label">Neuer Accountname</label>
     
                                 <div class="col-md-6">
                                     <input id="new-name" type="text" class="form-control" name="new-name" required>

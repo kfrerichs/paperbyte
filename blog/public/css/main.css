@@ -232,7 +232,7 @@ h1, h2, h3, h4{
 
 /* Characterformular */
 .characterformular{
-  width: 80vw;
+  max-width: 80vw;
   margin:auto;
 }
 .characterformular textarea{
@@ -483,6 +483,20 @@ h1, h2, h3, h4{
 }
 .charSave{
     margin-top: 20px;
+}
+
+/* Change */
+.noForm{
+    border: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+.newNL{
+    max-width: 100%;
+}
+.panel-heading{
+    margin-top: 20px;
+    margin-bottom: 30px;
 }
 
 
